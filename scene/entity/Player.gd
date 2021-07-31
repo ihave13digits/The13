@@ -1,13 +1,22 @@
 extends KinematicBody
 
+
 var gravity = Vector3.DOWN  # strength of gravity
+
+var player_height = 1.8 # about 5'10"
+
 var speed = 400 # movement speed
 var jump_speed = 6  # jump strength
 var spin = 0.1  # rotation speed
-var max_pitch = 60.0
-var _yaw = 0.0
-var _pitch = 0.0
+
+var max_pitch = 60.0 # maximum vertical angle
+var _yaw = 0.0 # left/right
+var _pitch = 0.0 # up/down
+
 var velocity = Vector3.ZERO
+var distance_tick = 0.0
+var steps_taken = 0
+
 var jump = false
 var has_control = true
 
@@ -17,9 +26,12 @@ onready var pivot
 
 func _ready():
 	pivot = $Pivot
+	
+	pivot.translation = Vector3(0, player_height-0.05, 0)
+	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
-func get_input():
+func get_input(delta):
 	velocity.x = 0
 	velocity.z = 0
 	
@@ -31,18 +43,34 @@ func get_input():
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			has_control = true
 	
+	if Input.is_action_just_pressed("use_item"):
+		print(distance_tick)
+	
 	if Input.is_action_pressed("move_forward"):
 		velocity += pivot.get_transform().basis.z
+		update_distance(delta)
 	elif Input.is_action_pressed("move_back"):
 		velocity -= pivot.get_transform().basis.z
+		update_distance(delta)
 	if Input.is_action_pressed("strafe_right"):
 		velocity -= pivot.get_transform().basis.x
+		update_distance(delta)
 	elif Input.is_action_pressed("strafe_left"):
 		velocity += pivot.get_transform().basis.x
+		update_distance(delta)
+
+func update_distance(delta):
+	distance_tick += delta
+	if distance_tick >= 0.5:
+			distance_tick = 0.0
+			steps_taken += 1
+			$Footsteps.playing = true
+	if steps_taken > 100:
+		print("Early worm gets the birb!")
 
 func _physics_process(delta):
 	velocity += gravity
-	get_input()
+	get_input(delta)
 	if velocity.length() > 0.01:
 		velocity /= velocity.length()
 
