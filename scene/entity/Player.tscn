@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scene/entity/Player.gd" type="Script" id=1]
+
+[sub_resource type="CapsuleShape" id=1]
+
+[node name="Player" type="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0569885, 0 )
+collision_layer = 2
+script = ExtResource( 1 )
+
+[node name="Box" type="CollisionShape" parent="."]
+transform = Transform( 0.397173, -0.25096, 2.38419e-07, 2.23518e-07, -1.71363e-07, -0.548933, 0.275744, 0.361475, -1.3709e-08, 0, 0.83509, 0 )
+shape = SubResource( 1 )
+
+[node name="Pivot" type="Spatial" parent="."]
+
+[node name="Camera" type="Camera" parent="Pivot"]
+transform = Transform( -0.99999, 1.49145e-07, -0.00452019, 1.49012e-07, 1, 2.98154e-08, 0.00452019, 2.91415e-08, -0.99999, 0, 1.36624, 0 )
+
+[node name="SpotLight" type="SpotLight" parent="Pivot"]
+transform = Transform( 1, 0, 0, 0, -1, 3.25841e-07, 0, -3.25841e-07, -1, 0, 0.976645, 0 )

@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scene/entity/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://material/grass.tres" type="Material" id=3]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="CSGBox4" type="CSGBox" parent="."]
+transform = Transform( 10.4899, 0, 0, 0, 6.16513, 0, 0, 0, 1.10722, 4.49054, -3.90103, 2.30577 )
+
+[node name="CSGBox3" type="CSGBox" parent="."]
+transform = Transform( 9.82178, 0, 0, 0, 1.10722, 0, 0, 0, 1.10722, 5.11526, -3.90103, -10.274 )
+height = 10.7246
+
+[node name="CSGBox" type="CSGBox" parent="."]
+transform = Transform( 9.19625, 0, 0, 0, 1.10722, 0, 0, 0, 1.10722, 5.7002, -3.90103, -3.96774 )
+use_collision = true
+height = 0.176498
+depth = 9.50025
+material = ExtResource( 3 )
+
+[node name="CSGBox2" type="CSGBox" parent="."]
+transform = Transform( 0.518947, 0, 0, 0, 0.616686, 0, 0, 0, 0.58879, 5.7002, -3.19305, -3.96774 )
+
+[node name="CSGBox5" type="CSGBox" parent="."]
+transform = Transform( -0.0129059, 0, -1.10723, 0, 33.2771, 0, 11.2033, 0, -0.00127547, 13.7914, -3.90103, -4.00051 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.62069, -3.78247 )
