@@ -13,6 +13,7 @@ script = ExtResource( 1 )
 
 [node name="Sun" type="DirectionalLight" parent="."]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 0, 0 )
+visible = false
 light_energy = 0.1
 
 [node name="Ground" type="StaticBody" parent="."]

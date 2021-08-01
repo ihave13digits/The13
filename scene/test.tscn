@@ -1,9 +1,16 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scene/environment/World.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scene/entity/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://material/jake-nackos-C2PCa6DhlYE-unsplash.jpg" type="Texture" id=3]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_texture = ExtResource( 3 )
+uv1_scale = Vector3( 12, 12, 12 )
 
 [node name="Spatial" type="Spatial"]
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
 
 [node name="World" parent="." instance=ExtResource( 1 )]
 
@@ -12,6 +19,7 @@ transform = Transform( 9.19625, 0, 0, 0, 1.10722, 0, 0, 0, 1.10722, 5.7002, -0.0
 use_collision = true
 height = 0.176498
 depth = 9.50025
+material = SubResource( 1 )
 
 [node name="CSGBox2" type="CSGBox" parent="."]
 transform = Transform( 0.518947, 0, 0, 0, 0.616686, 0, 0, 0, 0.58879, 5.7002, 0.659536, -3.96774 )
@@ -29,7 +37,3 @@ use_collision = true
 [node name="CSGBox5" type="CSGBox" parent="."]
 transform = Transform( -0.0129059, 0, -1.10723, 0, 33.2771, 0, 11.2033, 0, -0.00127547, 13.7914, -0.0484438, -4.00051 )
 use_collision = true
-
-[node name="Player" parent="." instance=ExtResource( 2 )]
-
-[editable path="Player"]
