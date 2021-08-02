@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scene/environment/World.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scene/entity/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://material/jake-nackos-C2PCa6DhlYE-unsplash.jpg" type="Texture" id=3]
+[ext_resource path="res://image/env/jake-nackos-C2PCa6DhlYE-unsplash.jpg" type="Texture" id=3]
+[ext_resource path="res://material/dark.tres" type="Material" id=4]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_texture = ExtResource( 3 )
@@ -24,16 +25,20 @@ material = SubResource( 1 )
 [node name="CSGBox2" type="CSGBox" parent="."]
 transform = Transform( 0.518947, 0, 0, 0, 0.616686, 0, 0, 0, 0.58879, 5.7002, 0.659536, -3.96774 )
 use_collision = true
+material = ExtResource( 4 )
 
 [node name="CSGBox3" type="CSGBox" parent="."]
 transform = Transform( 9.82178, 0, 0, 0, 1.10722, 0, 0, 0, 1.10722, 5.11526, -0.0484438, -10.274 )
 use_collision = true
 height = 10.7246
+material = ExtResource( 4 )
 
 [node name="CSGBox4" type="CSGBox" parent="."]
 transform = Transform( 10.4899, 0, 0, 0, 6.16513, 0, 0, 0, 1.10722, 4.49054, -0.0484438, 2.30577 )
 use_collision = true
+material = ExtResource( 4 )
 
 [node name="CSGBox5" type="CSGBox" parent="."]
 transform = Transform( -0.0129059, 0, -1.10723, 0, 33.2771, 0, 11.2033, 0, -0.00127547, 13.7914, -0.0484438, -4.00051 )
 use_collision = true
+material = ExtResource( 4 )
