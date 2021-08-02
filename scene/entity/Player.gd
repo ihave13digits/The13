@@ -1,7 +1,7 @@
 extends KinematicBody
 
 
-var gravity = Vector3.DOWN  # strength of gravity
+var gravity = Vector3.DOWN * 1.0  # strength of gravity
 
 var player_height = 1.8 # about 5'10"
 
@@ -15,23 +15,27 @@ var _pitch = 0.0 # up/down
 
 var velocity = Vector3.ZERO
 var distance_tick = 0.0
+var bob_tick = 0.0
 var steps_taken = 0
 
 var jump = false
 var has_control = true
 
 onready var pivot
+onready var flashlight
 
 
 
 func _ready():
 	pivot = $Pivot
+	flashlight = $Pivot/Flashlight
 	
 	pivot.translation = Vector3(0, player_height-0.05, 0)
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func get_input(delta):
+	var can_do = false
 	velocity.x = 0
 	velocity.z = 0
 	
@@ -48,23 +52,39 @@ func get_input(delta):
 	
 	if Input.is_action_pressed("move_forward"):
 		velocity += pivot.get_transform().basis.z
-		update_distance(delta)
+		can_do = true
 	elif Input.is_action_pressed("move_back"):
 		velocity -= pivot.get_transform().basis.z
-		update_distance(delta)
+		can_do = true
 	if Input.is_action_pressed("strafe_right"):
 		velocity -= pivot.get_transform().basis.x
-		update_distance(delta)
+		can_do = true
 	elif Input.is_action_pressed("strafe_left"):
 		velocity += pivot.get_transform().basis.x
+		can_do = true
+	
+	if can_do:
 		update_distance(delta)
 
 func update_distance(delta):
-	distance_tick += delta
-	if distance_tick >= 0.5:
-			distance_tick = 0.0
-			steps_taken += 1
-			$Footsteps.playing = true
+	pivot.translation = Vector3(0, player_height-0.05+(bob_tick*0.2), 0)
+	#flashlight.rotation_degrees = Vector3(-bob_tick*15, -175+(bob_tick*15), 180-(bob_tick*15))
+	distance_tick += delta*2
+	bob_tick = distance_tick-0.5
+	if distance_tick >= 1.0:
+		distance_tick -= 1.0
+		steps_taken += 1
+		$Footsteps.playing = true
+#		var tween = find_node('Tween')
+#		tween.interpolate_property(
+#			pivot,
+#			'translation',
+#			translation,
+#			Vector3(0, player_height-0.05+(bob_tick*0.2), 0),
+#			1.0,
+#			Tween.TRANS_LINEAR
+#			)
+#		tween.start()
 	if steps_taken > 100:
 		print("Early worm gets the birb!")
 
