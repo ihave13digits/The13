@@ -1,5 +1,6 @@
 extends KinematicBody
 
+signal triggered_event
 
 var gravity = Vector3.DOWN * 1.0  # strength of gravity
 
@@ -85,8 +86,8 @@ func update_distance(delta):
 #			Tween.TRANS_LINEAR
 #			)
 #		tween.start()
-	if steps_taken > 100:
-		print("Early worm gets the birb!")
+	if steps_taken > 10:
+		emit_signal("triggered_event")
 
 func _physics_process(delta):
 	velocity += gravity

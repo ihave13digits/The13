@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scene/environment/World.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scene/entity/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://image/env/jake-nackos-C2PCa6DhlYE-unsplash.jpg" type="Texture" id=3]
 [ext_resource path="res://material/dark.tres" type="Material" id=4]
 
@@ -10,8 +9,6 @@ albedo_texture = ExtResource( 3 )
 uv1_scale = Vector3( 12, 12, 12 )
 
 [node name="Spatial" type="Spatial"]
-
-[node name="Player" parent="." instance=ExtResource( 2 )]
 
 [node name="World" parent="." instance=ExtResource( 1 )]
 
