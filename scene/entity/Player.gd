@@ -86,7 +86,7 @@ func update_distance(delta):
 #			Tween.TRANS_LINEAR
 #			)
 #		tween.start()
-	if steps_taken > 100:
+	if steps_taken > 10:
 		emit_signal("triggered_event")
 
 func _physics_process(delta):
