@@ -3,6 +3,6 @@ extends Node
 var trigger_worm = false
 
 var mob = {
-	'player' : "res://scene/entity/Player.tscn",
-	'worm' : "res://scene/entity/Worm.tscn",
+	'player' : preload("res://scene/entity/Player.tscn"),
+	'worm' : preload("res://scene/entity/Worm.tscn"),
 	}

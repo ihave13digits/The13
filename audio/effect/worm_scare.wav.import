@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/worm_scare.wav-609328faddcb291e788e348629dba2b7.sample"
+path="res://.import/worm_scare.wav-c8e386b3d125205950a2999e1061430e.sample"
 
 [deps]
 
-source_file="res://audio/worm_scare.wav"
-dest_files=[ "res://.import/worm_scare.wav-609328faddcb291e788e348629dba2b7.sample" ]
+source_file="res://audio/effect/worm_scare.wav"
+dest_files=[ "res://.import/worm_scare.wav-c8e386b3d125205950a2999e1061430e.sample" ]
 
 [params]
 

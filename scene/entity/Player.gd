@@ -1,5 +1,6 @@
 extends KinematicBody
 
+signal update_cursor
 signal triggered_event
 
 var gravity = Vector3.DOWN * 1.0  # strength of gravity
@@ -16,24 +17,47 @@ var _pitch = 0.0 # up/down
 
 var velocity = Vector3.ZERO
 var distance_tick = 0.0
-var bob_tick = 0.0
 var steps_taken = 0
 
 var jump = false
 var has_control = true
 
 onready var pivot
+onready var cursor
 onready var flashlight
 
 
 
 func _ready():
 	pivot = $Pivot
+	cursor = $Pivot/Camera/Cursor
 	flashlight = $Pivot/Flashlight
 	
 	pivot.translation = Vector3(0, player_height-0.05, 0)
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+func _physics_process(delta):
+	if has_control:
+		velocity += gravity
+		get_input(delta)
+		if velocity.length() > 0.01:
+			velocity /= velocity.length()
+
+		var motion = velocity * (speed * delta)
+		motion = move_and_slide(motion, Vector3.UP, false, 4, 0.78, true)
+
+func _input(event):
+	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+		emit_signal("update_cursor")
+		_yaw -= event.relative.x * spin
+		_pitch += event.relative.y * spin
+		if _pitch > max_pitch:
+			_pitch = max_pitch
+		elif _pitch < -max_pitch:
+			_pitch = -max_pitch
+		pivot.set_rotation(Vector3(0, deg2rad(_yaw), 0))
+		pivot.rotate(pivot.get_transform().basis.x.normalized(), deg2rad(_pitch))
 
 func get_input(delta):
 	var can_do = false
@@ -49,7 +73,7 @@ func get_input(delta):
 			has_control = true
 	
 	if Input.is_action_just_pressed("use_item"):
-		print(distance_tick)
+		use_item()
 	
 	if Input.is_action_pressed("move_forward"):
 		velocity += pivot.get_transform().basis.z
@@ -66,12 +90,12 @@ func get_input(delta):
 	
 	if can_do:
 		update_distance(delta)
+		$Bobbing.play("step")
 
 func update_distance(delta):
-	pivot.translation = Vector3(0, player_height-0.05+(bob_tick*0.2), 0)
+	#pivot.translation = Vector3(0, player_height-0.05+(bob_tick*0.2), 0)
 	#flashlight.rotation_degrees = Vector3(-bob_tick*15, -175+(bob_tick*15), 180-(bob_tick*15))
 	distance_tick += delta*2
-	bob_tick = distance_tick-0.5
 	if distance_tick >= 1.0:
 		distance_tick -= 1.0
 		steps_taken += 1
@@ -86,25 +110,8 @@ func update_distance(delta):
 #			Tween.TRANS_LINEAR
 #			)
 #		tween.start()
-	if steps_taken > 10:
+	if steps_taken > 100:
 		emit_signal("triggered_event")
 
-func _physics_process(delta):
-	velocity += gravity
-	get_input(delta)
-	if velocity.length() > 0.01:
-		velocity /= velocity.length()
-
-	var motion = velocity * (speed * delta)
-	motion = move_and_slide(motion, Vector3.UP, false, 4, 0.78, true)
-
-func _input(event):
-	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		_yaw -= event.relative.x * spin
-		_pitch += event.relative.y * spin
-		if _pitch > max_pitch:
-			_pitch = max_pitch
-		elif _pitch < -max_pitch:
-			_pitch = -max_pitch
-		pivot.set_rotation(Vector3(0, deg2rad(_yaw), 0))
-		pivot.rotate(pivot.get_transform().basis.x.normalized(), deg2rad(_pitch))
+func use_item():
+	print(cursor.get_collider())
