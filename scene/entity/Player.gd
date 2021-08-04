@@ -10,6 +10,7 @@ var player_height = 1.8 # about 5'10"
 var speed = 400 # movement speed
 var jump_speed = 6  # jump strength
 var spin = 0.1  # rotation speed
+var pan_speed = 24.0
 
 var max_pitch = 60.0 # maximum vertical angle
 var _yaw = 0.0 # left/right
@@ -52,12 +53,15 @@ func _input(event):
 		emit_signal("update_cursor")
 		_yaw -= event.relative.x * spin
 		_pitch += event.relative.y * spin
-		if _pitch > max_pitch:
-			_pitch = max_pitch
-		elif _pitch < -max_pitch:
-			_pitch = -max_pitch
-		pivot.set_rotation(Vector3(0, deg2rad(_yaw), 0))
-		pivot.rotate(pivot.get_transform().basis.x.normalized(), deg2rad(_pitch))
+		update_rotations()
+
+func update_rotations():
+	if _pitch > max_pitch:
+		_pitch = max_pitch
+	elif _pitch < -max_pitch:
+		_pitch = -max_pitch
+	pivot.set_rotation(Vector3(0, deg2rad(_yaw), 0))
+	pivot.rotate(pivot.get_transform().basis.x.normalized(), deg2rad(_pitch))
 
 func get_input(delta):
 	var can_do = false
@@ -87,6 +91,19 @@ func get_input(delta):
 	elif Input.is_action_pressed("strafe_left"):
 		velocity += pivot.get_transform().basis.x
 		can_do = true
+	
+	if Input.is_action_pressed("pan_up"):
+		_pitch -= pan_speed * spin
+		update_rotations()
+	elif Input.is_action_pressed("pan_down"):
+		_pitch += pan_speed * spin
+		update_rotations()
+	if Input.is_action_pressed("pan_left"):
+		_yaw += pan_speed * spin
+		update_rotations()
+	elif Input.is_action_pressed("pan_right"):
+		_yaw -= pan_speed * spin
+		update_rotations()
 	
 	if can_do:
 		update_distance(delta)
