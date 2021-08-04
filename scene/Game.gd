@@ -19,8 +19,10 @@ func update_cursor():
 		cursor.modulate = Color(1.0, 1.0, 1.0, 0.125)
 
 func spawn(m='worm'):
-	if Data.trigger_worm == false:
-		Data.trigger_worm = true
-		var i = Data.mob[m].instance()
-		i.translation = Vector3(player.translation.x, player.translation.y, player.translation.z)
-		add_child(i)
+	match m:
+		'worm':
+			if Data.trigger_worm == false:
+				Data.trigger_worm = true
+				var i = Data.mob[m].instance()
+				i.translation = Vector3(player.translation.x, player.translation.y, player.translation.z)
+				add_child(i)
