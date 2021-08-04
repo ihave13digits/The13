@@ -22,6 +22,7 @@ var step_size = 0.75
 var steps_taken = 0
 
 var jump = false
+var aiming = false
 var has_control = true
 
 onready var pivot
@@ -81,6 +82,13 @@ func get_input(delta):
 	
 	if Input.is_action_just_pressed("use_item"):
 		use_item()
+	if Input.is_action_pressed("aim_flashlight"):
+		aiming = true
+		flashlight.translation = Vector3(-0.125, -0.05, 0)
+		flashlight.rotation_degrees = Vector3(0, 180, 0)
+	if Input.is_action_just_released("aim_flashlight"):
+		aiming = false
+		flashlight.translation = Vector3(-0.5, -0.75, 0)
 	
 	if Input.is_action_pressed("move_forward"):
 		velocity += pivot.get_transform().basis.z
@@ -111,6 +119,8 @@ func get_input(delta):
 	if can_do:
 		update_distance(delta)
 		$Bobbing.play("step")
+		if !aiming:
+			$Swinging.play("step")
 
 func update_distance(delta):
 	distance_tick += delta
