@@ -2,4 +2,14 @@
 
 A horror game written in Godot
 
-side note: why is starting a project so hard?
+Keyboard Controls:
+
+* W S A D - Move
+* Mouse - Pan
+* Left Click - Interact
+
+Joypad Controls:
+
+* Left Joystick - Move
+* Right Joystick - Pan
+* R2 - Interact
