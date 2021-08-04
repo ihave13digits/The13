@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scene/entity/Player.gd" type="Script" id=1]
 [ext_resource path="res://audio/effect/grass1.wav" type="AudioStream" id=2]
@@ -6,6 +6,35 @@
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.36
 height = 1.25
+
+[sub_resource type="Animation" id=2]
+resource_name = "step"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Pivot/Camera:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0.1, 0 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Pivot/Flashlight:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -180, 0 ), Vector3( -10, -190, 0 ), Vector3( 0, -180, 0 ) ]
+}
 
 [node name="Player" type="KinematicBody"]
 collision_layer = 2
@@ -15,23 +44,31 @@ script = ExtResource( 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0 )
 
 [node name="Camera" type="Camera" parent="Pivot"]
-transform = Transform( -1, 0, 3.25841e-07, 0, 1, 0, -3.25841e-07, 0, -1, 0, 0.05, 0 )
+transform = Transform( -1, 0, 3.25841e-07, 0, 1, 0, -3.25841e-07, 0, -1, 0, 0.1, 0 )
+
+[node name="Cursor" type="RayCast" parent="Pivot/Camera"]
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, 0, 0 )
+enabled = true
+cast_to = Vector3( 0, 0, 2.5 )
 
 [node name="Flashlight" type="SpotLight" parent="Pivot"]
-transform = Transform( 0.996195, -3.24601e-07, -0.0871556, -3.25841e-07, -1, 0, -0.0871556, 2.83989e-08, -0.996195, -0.455062, 0.05, 0 )
+transform = Transform( -0.984808, -0.0301537, 0.17101, 0, 0.984807, 0.173648, -0.173648, 0.17101, -0.969847, -0.5, -0.75, 0 )
 layers = 3
 light_energy = 6.66
 light_specular = 0.56
+shadow_enabled = true
+shadow_reverse_cull_face = true
 spot_range = 14.0
 spot_attenuation = 1.1487
 spot_angle = 11.8
 spot_angle_attenuation = 1.03526
 
-[node name="CollisionShape" type="CollisionShape" parent="."]
+[node name="Box" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 1, 0 )
 shape = SubResource( 1 )
 
 [node name="Footsteps" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
 
-[node name="Tween" type="Tween" parent="."]
+[node name="Bobbing" type="AnimationPlayer" parent="."]
+anims/step = SubResource( 2 )
