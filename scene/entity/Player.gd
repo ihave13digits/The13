@@ -18,6 +18,7 @@ var _pitch = 0.0 # up/down
 
 var velocity = Vector3.ZERO
 var distance_tick = 0.0
+var step_size = 0.75
 var steps_taken = 0
 
 var jump = false
@@ -26,6 +27,7 @@ var has_control = true
 onready var pivot
 onready var cursor
 onready var flashlight
+onready var bob_anim
 
 
 
@@ -33,6 +35,7 @@ func _ready():
 	pivot = $Pivot
 	cursor = $Pivot/Camera/Cursor
 	flashlight = $Pivot/Flashlight
+	bob_anim = $Bobbing
 	
 	pivot.translation = Vector3(0, player_height-0.05, 0)
 	
@@ -110,25 +113,17 @@ func get_input(delta):
 		$Bobbing.play("step")
 
 func update_distance(delta):
-	#pivot.translation = Vector3(0, player_height-0.05+(bob_tick*0.2), 0)
-	#flashlight.rotation_degrees = Vector3(-bob_tick*15, -175+(bob_tick*15), 180-(bob_tick*15))
-	distance_tick += delta*2
-	if distance_tick >= 1.0:
-		distance_tick -= 1.0
+	distance_tick += delta
+	if distance_tick >= step_size:
+		distance_tick -= step_size
 		steps_taken += 1
-		$Footsteps.playing = true
-#		var tween = find_node('Tween')
-#		tween.interpolate_property(
-#			pivot,
-#			'translation',
-#			translation,
-#			Vector3(0, player_height-0.05+(bob_tick*0.2), 0),
-#			1.0,
-#			Tween.TRANS_LINEAR
-#			)
-#		tween.start()
-	if steps_taken > 100:
+	if steps_taken > 10:
 		emit_signal("triggered_event")
 
 func use_item():
 	print(cursor.get_collider())
+
+
+func _on_Footsteps_finished():
+	var index = randi() % 3
+	$Footsteps.stream = Data.footstep['dirt'][index]

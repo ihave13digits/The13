@@ -1,16 +1,31 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scene/entity/Player.gd" type="Script" id=1]
-[ext_resource path="res://audio/effect/grass1.wav" type="AudioStream" id=2]
+[ext_resource path="res://audio/effect/dirt0.wav" type="AudioStream" id=2]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.36
 height = 1.25
 
 [sub_resource type="Animation" id=2]
-resource_name = "step"
+resource_name = "fall_down"
 length = 0.5
-step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 10, 0, 15 ), Vector3( 35, 0, 60 ), Vector3( 45, 0, 75 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.75
+step = 0.025
 tracks/0/type = "value"
 tracks/0/path = NodePath("Pivot/Camera:translation")
 tracks/0/interp = 1
@@ -35,6 +50,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Vector3( 0, -180, 0 ), Vector3( -10, -190, 0 ), Vector3( 0, -180, 0 ) ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("Footsteps:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
 
 [node name="Player" type="KinematicBody"]
 collision_layer = 2
@@ -44,7 +71,7 @@ script = ExtResource( 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0 )
 
 [node name="Camera" type="Camera" parent="Pivot"]
-transform = Transform( -1, 0, 3.25841e-07, 0, 1, 0, -3.25841e-07, 0, -1, 0, 0.1, 0 )
+transform = Transform( -1, 0, 3.25841e-07, 0, 1, 0, -3.25841e-07, 0, -1, 0, 0, 0 )
 
 [node name="Cursor" type="RayCast" parent="Pivot/Camera"]
 transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, 0, 0 )
@@ -52,11 +79,12 @@ enabled = true
 cast_to = Vector3( 0, 0, 2.5 )
 
 [node name="Flashlight" type="SpotLight" parent="Pivot"]
-transform = Transform( -0.984808, -0.0301537, 0.17101, 0, 0.984807, 0.173648, -0.173648, 0.17101, -0.969847, -0.5, -0.75, 0 )
+transform = Transform( -1, 0, 8.74228e-08, 0, 0.999999, 0, -8.74228e-08, 0, -1, -0.5, -0.75, 0 )
 layers = 3
 light_energy = 6.66
 light_specular = 0.56
 shadow_enabled = true
+shadow_bias = 0.0
 shadow_reverse_cull_face = true
 spot_range = 14.0
 spot_attenuation = 1.1487
@@ -71,4 +99,7 @@ shape = SubResource( 1 )
 stream = ExtResource( 2 )
 
 [node name="Bobbing" type="AnimationPlayer" parent="."]
-anims/step = SubResource( 2 )
+anims/fall_down = SubResource( 2 )
+anims/step = SubResource( 3 )
+
+[connection signal="finished" from="Footsteps" to="." method="_on_Footsteps_finished"]
