@@ -8,7 +8,6 @@ func _ready():
 	else:
 		$Center/ToggleBlur.pressed = false
 	
-	
 
 func _on_BlurSettings_value_changed(value):
 	match int(value):
@@ -29,3 +28,9 @@ func _on_Done_button_up():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	get_parent().player.has_control = true
 	queue_free()
+
+
+func _on_RenderingDistance_value_changed(value):
+	get_parent().player.camera.far = value
+	
+	pass # Replace with function body.

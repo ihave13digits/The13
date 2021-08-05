@@ -3,6 +3,8 @@ extends Node
 onready var hud
 onready var cursor
 onready var player
+onready var fade
+
 
 func _ready():
 	hud = $HUD
@@ -12,6 +14,7 @@ func _ready():
 	player.connect('update_cursor', self, 'update_cursor')
 	player.connect('triggered_event', self, 'spawn')
 	player.connect('pause_game', self, 'toggle_pause')
+	hud.connect('end_game', self, 'end_game')
 
 func update_cursor():
 	if player.cursor.get_collider() != null:
@@ -31,3 +34,7 @@ func spawn(m='worm'):
 				var i = Data.mob[m].instance()
 				i.translation = Vector3(player.translation.x, player.translation.y, player.translation.z)
 				add_child(i)
+				hud.anim.play("Fade")
+
+func end_game():
+	get_tree().quit()
