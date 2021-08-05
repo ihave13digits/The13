@@ -67,7 +67,9 @@ margin_left = -371.98
 margin_top = -109.667
 margin_right = -171.98
 margin_bottom = -93.6674
+min_value = 10.0
 max_value = 4000.0
+value = 100.0
 __meta__ = {
 "_edit_use_anchors_": false
 }

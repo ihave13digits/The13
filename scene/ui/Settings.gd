@@ -8,6 +8,9 @@ func _ready():
 	else:
 		$Center/ToggleBlur.pressed = false
 	
+	$Center/RenderingDistance.value = get_parent().player.camera.far
+	$Center/BlurSettings.value = Data.env.environment.dof_blur_far_quality
+	
 
 func _on_BlurSettings_value_changed(value):
 	match int(value):
@@ -32,5 +35,3 @@ func _on_Done_button_up():
 
 func _on_RenderingDistance_value_changed(value):
 	get_parent().player.camera.far = value
-	
-	pass # Replace with function body.
