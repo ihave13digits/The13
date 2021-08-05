@@ -1,6 +1,9 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scene/ui/Settings.gd" type="Script" id=1]
 
 [node name="Settings" type="CanvasLayer"]
+script = ExtResource( 1 )
 
 [node name="Center" type="Control" parent="."]
 anchor_left = 0.5
@@ -14,3 +17,41 @@ margin_bottom = 20.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="BlurSettings" type="HSlider" parent="Center"]
+margin_left = -389.392
+margin_top = -175.745
+margin_right = -189.392
+margin_bottom = -115.745
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Center/BlurSettings"]
+margin_left = -91.827
+margin_top = 23.9406
+margin_right = -6.82703
+margin_bottom = 37.9406
+text = "Blur Settings"
+
+[node name="ToggleBlur" type="CheckButton" parent="Center"]
+margin_left = -443.876
+margin_top = -236.717
+margin_right = -367.876
+margin_bottom = -196.717
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Center/ToggleBlur"]
+margin_left = -34.9623
+margin_top = 11.6541
+margin_right = 5.03772
+margin_bottom = 25.6541
+text = "Blur"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="value_changed" from="Center/BlurSettings" to="." method="_on_BlurSettings_value_changed"]
+[connection signal="button_up" from="Center/ToggleBlur" to="." method="_on_ToggleBlur_button_up"]
