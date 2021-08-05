@@ -30,7 +30,7 @@ onready var pivot
 onready var cursor
 onready var flashlight
 onready var bob_anim
-
+onready var camera
 
 
 func _ready():
@@ -42,6 +42,8 @@ func _ready():
 	pivot.translation = Vector3(0, player_height-0.05, 0)
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
+	camera = $Pivot/Camera
 
 func _physics_process(delta):
 	if has_control:
@@ -119,7 +121,7 @@ func get_input(delta):
 		_yaw -= pan_speed * spin
 		update_rotations()
 	
-	if can_do:
+	if can_do && has_control:
 		update_distance(delta)
 		$Bobbing.play("step")
 		if !aiming:

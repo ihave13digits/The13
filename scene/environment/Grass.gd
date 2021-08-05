@@ -3,7 +3,7 @@ extends Spatial
 var size = 100
 
 func _ready():
-	$Meshes.multimesh.instance_count = 500
+	$Meshes.multimesh.instance_count = 10000
 	
 	for i in range($Meshes.multimesh.instance_count):
 		var X = (randi() % size) - float(size)/2.0 + randf()

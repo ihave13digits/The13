@@ -1,8 +1,26 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://image/ui/cursor.png" type="Texture" id=1]
+[ext_resource path="res://scene/ui/Fade.gd" type="Script" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Fade"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Control/ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 5, 5.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 1 ) ]
+}
 
 [node name="HUD" type="CanvasLayer"]
+script = ExtResource( 2 )
 
 [node name="Center" type="Control" parent="."]
 anchor_left = 0.5
@@ -20,3 +38,24 @@ __meta__ = {
 [node name="Cursor" type="Sprite" parent="Center"]
 texture = ExtResource( 1 )
 centered = false
+
+[node name="Fade" type="AnimationPlayer" parent="Center"]
+anims/Fade = SubResource( 1 )
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+modulate = Color( 0, 0, 0, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="animation_finished" from="Center/Fade" to="." method="_on_Fade_animation_finished"]
