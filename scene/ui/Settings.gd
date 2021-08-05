@@ -26,4 +26,6 @@ func _on_ToggleBlur_button_up():
 		Data.env.environment.dof_blur_far_enabled = false
 
 func _on_Done_button_up():
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	get_parent().player.has_control = true
 	queue_free()
