@@ -1,26 +1,29 @@
 extends CanvasLayer
 
-var env
 
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	env = WorldEnvironment.new()
-	env.set_environment(load("res://default_env.tres"))
+	if Data.env.environment.dof_blur_far_enabled:
+		$Center/ToggleBlur.pressed = true
+	else:
+		$Center/ToggleBlur.pressed = false
+	
+	
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
-
-###func _on_BlurSettings_value_changed(value):
-	#pass # Replace with function body.
-
+func _on_BlurSettings_value_changed(value):
+	match int(value):
+		0:
+			Data.env.environment.dof_blur_far_quality = Environment.DOF_BLUR_QUALITY_LOW
+		1:
+			Data.env.environment.dof_blur_far_quality = Environment.DOF_BLUR_QUALITY_MEDIUM
+		2:
+			Data.env.environment.dof_blur_far_quality = Environment.DOF_BLUR_QUALITY_HIGH
 
 func _on_ToggleBlur_button_up():
-	if !env.dof_far_blur_enabled:
-		env.dof_far_blur_enabled = true
+	if $Center/ToggleBlur.pressed:
+		Data.env.environment.dof_blur_far_enabled = true
 	else:
-		env.dof_far_blur_enabled = false
+		Data.env.environment.dof_blur_far_enabled = false
+
+func _on_Done_button_up():
+	queue_free()

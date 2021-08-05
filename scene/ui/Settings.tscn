@@ -23,6 +23,8 @@ margin_left = -389.392
 margin_top = -175.745
 margin_right = -189.392
 margin_bottom = -115.745
+max_value = 2.0
+rounded = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -53,5 +55,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Done" type="Button" parent="Center"]
+margin_left = -472.0
+margin_top = -80.0
+margin_right = -426.0
+margin_bottom = -60.0
+text = "Done"
+
 [connection signal="value_changed" from="Center/BlurSettings" to="." method="_on_BlurSettings_value_changed"]
 [connection signal="button_up" from="Center/ToggleBlur" to="." method="_on_ToggleBlur_button_up"]
+[connection signal="button_up" from="Center/Done" to="." method="_on_Done_button_up"]

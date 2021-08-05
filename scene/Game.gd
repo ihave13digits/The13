@@ -11,12 +11,17 @@ func _ready():
 	add_child(player)
 	player.connect('update_cursor', self, 'update_cursor')
 	player.connect('triggered_event', self, 'spawn')
+	player.connect('pause_game', self, 'toggle_pause')
 
 func update_cursor():
 	if player.cursor.get_collider() != null:
 		cursor.modulate = Color(1.0, 1.0, 1.0, 0.5)
 	else:
 		cursor.modulate = Color(1.0, 1.0, 1.0, 0.125)
+
+func toggle_pause():
+	var menu = load("res://scene/ui/Settings.tscn").instance()
+	add_child(menu)
 
 func spawn(m='worm'):
 	match m:

@@ -1,5 +1,6 @@
 extends KinematicBody
 
+signal pause_game
 signal update_cursor
 signal triggered_event
 
@@ -79,9 +80,11 @@ func get_input(delta):
 		elif Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			has_control = true
+		emit_signal("pause_game")
 	
 	if Input.is_action_just_pressed("use_item"):
 		use_item()
+			
 	if Input.is_action_pressed("aim_flashlight"):
 		aiming = true
 		flashlight.translation = Vector3(-0.125, -0.05, 0)
