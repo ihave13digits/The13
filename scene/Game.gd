@@ -16,6 +16,11 @@ func _ready():
 	player.connect('pause_game', self, 'toggle_pause')
 	hud.connect('end_game', self, 'end_game')
 
+func display_message(message):
+	var msg = load("res://scene/ui/PopupMessage.tscn").instance()
+	msg.message = message
+	add_child(msg)
+
 func update_cursor():
 	if player.cursor.get_collider() != null:
 		cursor.modulate = Color(1.0, 1.0, 1.0, 0.5)

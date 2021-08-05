@@ -136,7 +136,9 @@ func update_distance(delta):
 		emit_signal("triggered_event")
 
 func use_item():
-	print(cursor.get_collider())
+	if cursor.get_collider() != null:
+		if cursor.get_collider().has_method('get_message'):
+			get_parent().display_message(cursor.get_collider().get_message())
 
 
 func _on_Footsteps_finished():

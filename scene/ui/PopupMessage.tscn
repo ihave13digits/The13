@@ -1,0 +1,63 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scene/ui/PopupMessage.gd" type="Script" id=1]
+
+[sub_resource type="Animation" id=1]
+resource_name = "pop_up"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 4.5, 5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 512, -16 ), Vector2( 512, 16 ), Vector2( 512, 16 ), Vector2( 512, -16 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 4, 5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="PopupMessage" type="Control"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_top = 16.0
+margin_bottom = 16.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -29.0
+margin_top = -8.5
+margin_right = 29.0
+margin_bottom = 39.5
+grow_horizontal = 2
+text = "
+"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+autoplay = "pop_up"
+anims/pop_up = SubResource( 1 )
+
+[connection signal="animation_finished" from="Anim" to="." method="_on_Anim_animation_finished"]
