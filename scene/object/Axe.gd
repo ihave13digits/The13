@@ -1,4 +1,4 @@
 extends StaticBody
 
 func get_message():
-	return "You see an axe."
+	return "Were you axed to inspect me?"
