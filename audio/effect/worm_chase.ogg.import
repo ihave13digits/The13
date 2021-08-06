@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/worm_chase.ogg-2eb0be4a7d950f85c6e87f4b77715f5f.oggstr"
+
+[deps]
+
+source_file="res://audio/effect/worm_chase.ogg"
+dest_files=[ "res://.import/worm_chase.ogg-2eb0be4a7d950f85c6e87f4b77715f5f.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

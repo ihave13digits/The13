@@ -132,7 +132,7 @@ func update_distance(delta):
 	if distance_tick >= step_size:
 		distance_tick -= step_size
 		steps_taken += 1
-	if steps_taken > 10:
+	if steps_taken > 25:
 		emit_signal("triggered_event")
 
 func use_item():

@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/horizon.obj-b49b37aa6df6a21cb5bef4fedf372f14.mesh"
+
+[deps]
+
+files=[ "res://.import/horizon.obj-b49b37aa6df6a21cb5bef4fedf372f14.mesh" ]
+
+source_file="res://mesh/horizon.obj"
+dest_files=[ "res://.import/horizon.obj-b49b37aa6df6a21cb5bef4fedf372f14.mesh", "res://.import/horizon.obj-b49b37aa6df6a21cb5bef4fedf372f14.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
