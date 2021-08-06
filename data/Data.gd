@@ -14,6 +14,7 @@ var footstep = {
 
 var mob = {
 	'player' : preload("res://scene/entity/Player.tscn"),
+	'figure' : preload("res://scene/entity/Figure.tscn"),
 	'worm' : preload("res://scene/entity/Worm.tscn"),
 	}
 

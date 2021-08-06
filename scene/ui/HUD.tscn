@@ -4,7 +4,7 @@
 [ext_resource path="res://scene/ui/HUD.gd" type="Script" id=2]
 
 [sub_resource type="Animation" id=1]
-resource_name = "Fade"
+resource_name = "fade"
 length = 7.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("../Control/ColorRect:modulate")
@@ -40,7 +40,7 @@ texture = ExtResource( 1 )
 centered = false
 
 [node name="Fade" type="AnimationPlayer" parent="Center"]
-anims/Fade = SubResource( 1 )
+anims/fade = SubResource( 1 )
 
 [node name="Control" type="Control" parent="."]
 anchor_right = 1.0

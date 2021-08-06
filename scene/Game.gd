@@ -5,6 +5,7 @@ onready var cursor
 onready var player
 onready var fade
 
+onready var figure = $Figure
 
 func _ready():
 	hud = $HUD
@@ -33,13 +34,17 @@ func toggle_pause():
 
 func spawn(m='worm'):
 	match m:
-		'worm':
+		'worm' :
 			if Data.trigger_worm == false:
 				Data.trigger_worm = true
 				var i = Data.mob[m].instance()
-				i.translation = Vector3(player.translation.x, player.translation.y, player.translation.z)
+				i.translation = player.translation
 				add_child(i)
-				hud.anim.play("Fade")
+				hud.anim.play("fade")
+		'figure' :
+			var i = Data.mob[m].instance()
+			i.translation = Vector3()
+			add_child(i)
 
 func end_game():
 	get_tree().quit()
