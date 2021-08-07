@@ -4,7 +4,7 @@ signal pause_game
 signal update_cursor
 signal triggered_event
 
-var gravity = Vector3.DOWN * 1.0  # strength of gravity
+var gravity = Vector3.DOWN * 0.5  # strength of gravity
 
 var player_height = 1.8 # about 5'10"
 
