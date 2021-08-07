@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scene/Game.gd" type="Script" id=1]
 [ext_resource path="res://scene/test.tscn" type="PackedScene" id=2]
@@ -6,12 +6,65 @@
 [ext_resource path="res://scene/ui/HUD.tscn" type="PackedScene" id=4]
 [ext_resource path="res://audio/effect/worm_chase.ogg" type="AudioStream" id=5]
 [ext_resource path="res://scene/object/Axe.tscn" type="PackedScene" id=6]
+[ext_resource path="res://addons/qodot/src/nodes/qodot_map.gd" type="Script" id=7]
 [ext_resource path="res://audio/effect/church_bell.wav" type="AudioStream" id=8]
 [ext_resource path="res://scene/environment/FlickeringLight.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scene/entity/Figure.tscn" type="PackedScene" id=10]
+[ext_resource path="res://addons/qodot/game_definitions/fgd/qodot_fgd.tres" type="Resource" id=11]
+[ext_resource path="res://addons/qodot/textures/materials/grid_material.tres" type="Material" id=12]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0.282353, 0.113725, 0.113725, 1 )
+
+[sub_resource type="ArrayMesh" id=2]
+surfaces/0 = {
+"aabb": AABB( -4, -7, -0.5, 4.75001, 12.25, 0.25 ),
+"array_data": PoolByteArray( 0, 0, 64, 63, 0, 0, 48, 192, 0, 0, 0, 191, 0, 0, 129, 0, 0, 129, 0, 127, 26, 182, 71, 40, 0, 0, 64, 63, 0, 0, 168, 64, 0, 0, 0, 191, 0, 0, 129, 0, 0, 129, 0, 127, 242, 56, 71, 40, 0, 0, 80, 192, 162, 188, 86, 64, 0, 0, 0, 191, 0, 0, 129, 0, 0, 129, 0, 127, 26, 54, 119, 55, 0, 0, 80, 192, 175, 161, 148, 192, 0, 0, 0, 191, 0, 0, 129, 0, 0, 129, 0, 127, 242, 184, 119, 55, 0, 0, 64, 63, 0, 0, 48, 192, 0, 0, 0, 191, 7, 241, 131, 0, 114, 53, 249, 129, 24, 46, 47, 46, 0, 0, 80, 192, 175, 161, 148, 192, 0, 0, 0, 191, 7, 241, 131, 0, 114, 53, 249, 129, 121, 182, 47, 46, 0, 0, 128, 192, 0, 0, 224, 192, 0, 0, 128, 190, 7, 241, 131, 0, 114, 53, 249, 129, 195, 184, 208, 47, 0, 0, 0, 0, 81, 94, 163, 192, 0, 0, 128, 190, 7, 241, 131, 0, 114, 53, 249, 129, 24, 174, 208, 47, 0, 0, 80, 192, 162, 188, 86, 64, 0, 0, 0, 191, 216, 0, 136, 0, 12, 136, 38, 127, 45, 57, 206, 46, 0, 0, 128, 192, 0, 0, 128, 63, 0, 0, 128, 190, 216, 0, 136, 0, 12, 136, 38, 127, 165, 53, 49, 47, 0, 0, 128, 192, 0, 0, 224, 192, 0, 0, 128, 190, 216, 0, 136, 0, 12, 136, 38, 127, 45, 185, 49, 47, 0, 0, 80, 192, 175, 161, 148, 192, 0, 0, 0, 191, 216, 0, 136, 0, 12, 136, 38, 127, 165, 181, 206, 46, 0, 0, 64, 63, 0, 0, 168, 64, 0, 0, 0, 191, 40, 0, 120, 0, 12, 136, 38, 129, 181, 48, 206, 46, 0, 0, 64, 63, 0, 0, 48, 192, 0, 0, 0, 191, 40, 0, 120, 0, 12, 136, 38, 129, 210, 186, 206, 46, 0, 0, 0, 0, 81, 94, 163, 192, 0, 0, 128, 190, 40, 0, 120, 0, 12, 136, 38, 129, 150, 188, 49, 47, 0, 0, 0, 0, 94, 67, 57, 64, 0, 0, 128, 190, 40, 0, 120, 0, 12, 136, 38, 129, 181, 176, 49, 47, 0, 0, 64, 63, 0, 0, 168, 64, 0, 0, 0, 191, 249, 15, 125, 0, 114, 53, 249, 127, 24, 46, 47, 46, 0, 0, 0, 0, 94, 67, 57, 64, 0, 0, 128, 190, 249, 15, 125, 0, 114, 53, 249, 127, 24, 174, 208, 47, 0, 0, 128, 192, 0, 0, 128, 63, 0, 0, 128, 190, 249, 15, 125, 0, 114, 53, 249, 127, 195, 184, 208, 47, 0, 0, 80, 192, 162, 188, 86, 64, 0, 0, 0, 191, 249, 15, 125, 0, 114, 53, 249, 127, 121, 182, 47, 46, 0, 0, 0, 0, 81, 94, 163, 192, 0, 0, 128, 190, 0, 0, 127, 0, 0, 129, 0, 129, 26, 182, 71, 40, 0, 0, 128, 192, 0, 0, 224, 192, 0, 0, 128, 190, 0, 0, 127, 0, 0, 129, 0, 129, 242, 184, 119, 55, 0, 0, 128, 192, 0, 0, 128, 63, 0, 0, 128, 190, 0, 0, 127, 0, 0, 129, 0, 129, 26, 54, 119, 55, 0, 0, 0, 0, 94, 67, 57, 64, 0, 0, 128, 190, 0, 0, 127, 0, 0, 129, 0, 129, 242, 56, 71, 40 ),
+"array_index_data": PoolByteArray( 0, 0, 1, 0, 2, 0, 0, 0, 2, 0, 3, 0, 4, 0, 5, 0, 6, 0, 4, 0, 6, 0, 7, 0, 8, 0, 9, 0, 10, 0, 8, 0, 10, 0, 11, 0, 12, 0, 13, 0, 14, 0, 12, 0, 14, 0, 15, 0, 16, 0, 17, 0, 18, 0, 16, 0, 18, 0, 19, 0, 20, 0, 21, 0, 22, 0, 20, 0, 22, 0, 23, 0 ),
+"blend_shape_data": [  ],
+"format": 97559,
+"index_count": 36,
+"material": ExtResource( 12 ),
+"primitive": 4,
+"skeleton_aabb": [  ],
+"vertex_count": 24
+}
+
+[sub_resource type="ConvexPolygonShape" id=3]
+points = PoolVector3Array( 0.75, -2.75, -0.5, 0.75, 5.25, -0.5, -3.25, 3.35526, -0.5, -3.25, -4.64474, -0.5, -4, -7, -0.25, 0, -5.10526, -0.25, -4, 1, -0.25, 0, 2.89474, -0.25 )
 
 [node name="Game" type="Node"]
 script = ExtResource( 1 )
+
+[node name="QodotMap" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02587, -4.78647 )
+script = ExtResource( 7 )
+map_file = "/home/reaply/13/The13/maps/test3.map"
+inverse_scale_factor = 16.0
+entity_fgd = ExtResource( 11 )
+base_texture_dir = "res://addons/qodot/textures"
+texture_file_extension = "png"
+worldspawn_layers = [  ]
+brush_clip_texture = "special/clip"
+face_skip_texture = "special/skip"
+texture_wads = [  ]
+material_file_extension = "tres"
+default_material = SubResource( 1 )
+uv_unwrap_texel_size = 1.0
+print_profiling_data = false
+use_trenchbroom_group_hierarchy = false
+tree_attach_batch_size = 16
+set_owner_batch_size = 16
+
+[node name="entity_0_worldspawn" type="StaticBody" parent="QodotMap"]
+
+[node name="entity_0_mesh_instance" type="MeshInstance" parent="QodotMap/entity_0_worldspawn"]
+use_in_baked_light = true
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="entity_0_brush_0_collision_shape" type="CollisionShape" parent="QodotMap/entity_0_worldspawn"]
+shape = SubResource( 3 )
 
 [node name="HUD" parent="." instance=ExtResource( 4 )]
 
