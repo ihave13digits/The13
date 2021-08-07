@@ -2,6 +2,8 @@ extends Spatial
 
 var size = 100
 
+
+
 func _ready():
 	$Meshes.multimesh.instance_count = 1000
 	

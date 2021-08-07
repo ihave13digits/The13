@@ -1,15 +1,15 @@
 extends Node
 
-onready var hud
-onready var cursor
+onready var hud = $HUD
+onready var cursor = $HUD/Center/Cursor
 onready var player
-onready var fade
+onready var world = $World
 
 onready var figure = $Figure
 
+
+
 func _ready():
-	hud = $HUD
-	cursor = $HUD/Center/Cursor
 	player = Data.mob['player'].instance()
 	add_child(player)
 	player.connect('update_cursor', self, 'update_cursor')

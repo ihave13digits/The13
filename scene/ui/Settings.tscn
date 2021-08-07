@@ -19,10 +19,10 @@ __meta__ = {
 }
 
 [node name="BlurSettings" type="HSlider" parent="Center"]
-margin_left = -372.707
-margin_top = -176.412
-margin_right = -172.707
-margin_bottom = -116.412
+margin_left = 318.0
+margin_top = -257.412
+margin_right = 518.0
+margin_bottom = -241.412
 max_value = 2.0
 rounded = true
 __meta__ = {
@@ -30,43 +30,16 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="Center/BlurSettings"]
-margin_left = -113.852
-margin_top = 24.608
-margin_right = -28.8519
-margin_bottom = 38.608
+margin_left = -116.0
+margin_right = -30.9999
+margin_bottom = 14.0
 text = "Blur Settings"
 
-[node name="ToggleBlur" type="CheckButton" parent="Center"]
-margin_left = -443.876
-margin_top = -236.717
-margin_right = -367.876
-margin_bottom = -196.717
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="Center/ToggleBlur"]
-margin_left = -34.9623
-margin_top = 11.6541
-margin_right = 5.03772
-margin_bottom = 25.6541
-text = "Blur"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Done" type="Button" parent="Center"]
-margin_left = -472.0
-margin_top = -80.0
-margin_right = -426.0
-margin_bottom = -60.0
-text = "Done"
-
 [node name="RenderingDistance" type="HSlider" parent="Center"]
-margin_left = -371.98
-margin_top = -109.667
-margin_right = -171.98
-margin_bottom = -93.6674
+margin_left = 318.0
+margin_top = -232.667
+margin_right = 518.0
+margin_bottom = -216.667
 min_value = 10.0
 max_value = 4000.0
 value = 100.0
@@ -75,13 +48,81 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="Center/RenderingDistance"]
-margin_left = -116.36
-margin_top = 0.332581
-margin_right = -11.3597
-margin_bottom = 14.3326
+margin_left = -116.0
+margin_right = -10.9997
+margin_bottom = 14.0
 text = "Render Distance"
 
+[node name="ToggleBlur" type="CheckButton" parent="Center"]
+margin_left = -378.0
+margin_top = -268.717
+margin_right = -302.0
+margin_bottom = -228.717
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Center/ToggleBlur"]
+margin_left = -104.0
+margin_top = 12.0
+margin_right = -64.0
+margin_bottom = 26.0
+text = "Blur"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TogglePostProcessing" type="CheckButton" parent="Center"]
+margin_left = -378.0
+margin_top = -236.717
+margin_right = -302.0
+margin_bottom = -196.717
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Center/TogglePostProcessing"]
+margin_left = -104.0
+margin_top = 12.0
+margin_right = -64.0
+margin_bottom = 26.0
+text = "Post Pocessing"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ToggleBellsAndWhistles" type="CheckButton" parent="Center"]
+margin_left = -378.0
+margin_top = -204.717
+margin_right = -302.0
+margin_bottom = -164.717
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Center/ToggleBellsAndWhistles"]
+margin_left = -104.0
+margin_top = 12.0
+margin_right = -64.0
+margin_bottom = 26.0
+text = "Superb Graphics"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Done" type="Button" parent="Center"]
+margin_left = -24.0
+margin_top = 280.0
+margin_right = 22.0
+margin_bottom = 300.0
+text = "Done"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="value_changed" from="Center/BlurSettings" to="." method="_on_BlurSettings_value_changed"]
-[connection signal="button_up" from="Center/ToggleBlur" to="." method="_on_ToggleBlur_button_up"]
-[connection signal="button_up" from="Center/Done" to="." method="_on_Done_button_up"]
 [connection signal="value_changed" from="Center/RenderingDistance" to="." method="_on_RenderingDistance_value_changed"]
+[connection signal="button_up" from="Center/ToggleBlur" to="." method="_on_ToggleBlur_button_up"]
+[connection signal="button_up" from="Center/TogglePostProcessing" to="." method="_on_TogglePostProcessing_button_up"]
+[connection signal="button_up" from="Center/ToggleBellsAndWhistles" to="." method="_on_ToggleBellsAndWhistles_button_up"]
+[connection signal="button_up" from="Center/Done" to="." method="_on_Done_button_up"]

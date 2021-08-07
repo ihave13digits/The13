@@ -3,6 +3,8 @@ extends Spatial
 var grab_target = null
 onready var grab_point = $GrabPoint
 
+
+
 func _physics_process(_delta):
 	grab_point.translation.x = translation.x
 	grab_point.translation.z = translation.z
