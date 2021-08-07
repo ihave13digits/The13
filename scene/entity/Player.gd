@@ -27,25 +27,18 @@ var jump = false
 var aiming = false
 var has_control = true
 
-onready var pivot
-onready var cursor
-onready var flashlight
-onready var bob_anim
-onready var camera
+onready var pivot = $Pivot
+onready var cursor = $Pivot/Camera/Cursor
+onready var flashlight = $Pivot/Flashlight
+onready var bob_anim = $Bobbing
+onready var camera = $Pivot/Camera
 
 
 
 func _ready():
-	pivot = $Pivot
-	cursor = $Pivot/Camera/Cursor
-	flashlight = $Pivot/Flashlight
-	bob_anim = $Bobbing
-	
 	pivot.translation = Vector3(0, player_height-0.05, 0)
-	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	
-	camera = $Pivot/Camera
+
 
 func _physics_process(delta):
 	if has_control:
@@ -54,7 +47,7 @@ func _physics_process(delta):
 		vel += gravity
 		if vel.length() > 0.01:
 			vel /= vel.length()
-		
+
 		if Input.is_action_just_pressed("menu"):
 			if Input.get_mouse_mode() != Input.MOUSE_MODE_VISIBLE:
 				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -63,13 +56,13 @@ func _physics_process(delta):
 				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 				has_control = true
 			emit_signal("pause_game")
-		
+
 		if Input.is_action_just_pressed("use_item"):
 			use_item()
-		
+
 		if Input.is_action_just_pressed("jump"):# && is_on_floor():
 			vel -= gravity*jump_speed
-		
+
 		if Input.is_action_pressed("aim_flashlight"):
 			aiming = true
 			flashlight.translation = Vector3(-0.125, -0.05, 0)
@@ -77,7 +70,7 @@ func _physics_process(delta):
 		if Input.is_action_just_released("aim_flashlight"):
 			aiming = false
 			flashlight.translation = Vector3(-0.5, -0.75, 0)
-		
+
 		if Input.is_action_pressed("move_forward"):
 			vel += pivot.get_transform().basis.z
 			can_do = true
@@ -90,7 +83,7 @@ func _physics_process(delta):
 		elif Input.is_action_pressed("strafe_left"):
 			vel += pivot.get_transform().basis.x
 			can_do = true
-		
+
 		if Input.is_action_pressed("pan_up"):
 			_pitch -= pan_speed * spin
 			update_rotations()
@@ -103,7 +96,7 @@ func _physics_process(delta):
 		elif Input.is_action_pressed("pan_right"):
 			_yaw -= pan_speed * spin
 			update_rotations()
-		
+
 		if can_do:
 			update_distance(delta)
 			$Bobbing.play("step")
@@ -124,6 +117,7 @@ func _input(event):
 		_pitch += event.relative.y * spin
 		update_rotations()
 
+
 func update_rotations():
 	if _pitch > max_pitch:
 		_pitch = max_pitch
@@ -143,9 +137,15 @@ func update_distance(delta):
 func use_item():
 	if cursor.get_collider() != null:
 		if cursor.get_collider().has_method('get_message'):
-			get_parent().display_message(cursor.get_collider().get_message())
-			get_parent().figure.visible = true
-			get_parent().figure.hitbox.disabled = false
+			if is_instance_valid(get_parent().figure):
+				get_parent().display_message(cursor.get_collider().get_message())
+				get_parent().figure.visible = true
+				get_parent().figure.hitbox.disabled = false
+
+
+func update_quality():
+	flashlight.shadow_enabled = Data.bells_and_whistles
+
 
 func _on_Footsteps_finished():
 	var index = randi() % 3

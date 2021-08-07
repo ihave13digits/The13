@@ -2,6 +2,8 @@ extends Control
 
 var message
 
+
+
 func _ready():
 	$Text.text = message
 

@@ -1,4 +1,6 @@
+
 [gd_scene load_steps=10 format=2]
+
 
 [ext_resource path="res://scene/Game.gd" type="Script" id=1]
 [ext_resource path="res://scene/test.tscn" type="PackedScene" id=2]
@@ -7,7 +9,6 @@
 [ext_resource path="res://audio/effect/worm_chase.ogg" type="AudioStream" id=5]
 [ext_resource path="res://scene/object/Axe.tscn" type="PackedScene" id=6]
 [ext_resource path="res://audio/effect/church_bell.wav" type="AudioStream" id=8]
-[ext_resource path="res://scene/environment/FlickeringLight.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scene/entity/Figure.tscn" type="PackedScene" id=10]
 
 [node name="Game" type="Node"]
@@ -33,9 +34,8 @@ stream = ExtResource( 8 )
 unit_db = 17.088
 autoplay = true
 
-[node name="FlickeringLight" parent="." instance=ExtResource( 9 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.03873, 0 )
-
 [node name="Figure" parent="." instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9735, 0, -4.13919 )
 visible = false
+
+[editable path="Spatial"]

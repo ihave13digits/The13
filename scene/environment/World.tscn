@@ -1,10 +1,7 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scene/environment/World.gd" type="Script" id=1]
 [ext_resource path="res://material/grass.tres" type="Material" id=2]
-[ext_resource path="res://scene/environment/Grass1.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scene/environment/Grass3.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scene/environment/Grass2.tscn" type="PackedScene" id=5]
 [ext_resource path="res://mesh/horizon.obj" type="ArrayMesh" id=6]
 
 [sub_resource type="QuadMesh" id=1]
@@ -30,12 +27,6 @@ material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="Ground"]
 shape = SubResource( 2 )
-
-[node name="Grass1" parent="." instance=ExtResource( 3 )]
-
-[node name="Grass2" parent="." instance=ExtResource( 5 )]
-
-[node name="Grass3" parent="." instance=ExtResource( 4 )]
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 mesh = ExtResource( 6 )
