@@ -115,6 +115,10 @@ func _physics_process(delta):
 
 func _input(event):
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+		if cursor.get_collider() != null:
+			var target = cursor.get_collider().get_parent()
+			if target.has_method('hide_from_player') && target.visible == true:
+				target.hide_from_player()
 		emit_signal("update_cursor")
 		_yaw -= event.relative.x * spin
 		_pitch += event.relative.y * spin
@@ -141,6 +145,7 @@ func use_item():
 		if cursor.get_collider().has_method('get_message'):
 			get_parent().display_message(cursor.get_collider().get_message())
 			get_parent().figure.visible = true
+			get_parent().figure.hitbox.disabled = false
 
 func _on_Footsteps_finished():
 	var index = randi() % 3
