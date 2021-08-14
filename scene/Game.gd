@@ -47,4 +47,4 @@ func spawn(m='worm'):
 			add_child(i)
 
 func end_game():
-	get_tree().quit()
+	var _can_do = get_tree().change_scene("res://scene/ui/Credits.tscn")
