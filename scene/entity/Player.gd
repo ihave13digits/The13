@@ -61,6 +61,12 @@ func _physics_process(delta):
 				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 				has_control = true
 			emit_signal("pause_game")
+		
+		if Input.is_action_just_pressed("inventory"):
+			var inv = load("res://scene/ui/Inventory.tscn").instance()
+			get_parent().add_child(inv)
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+			has_control = false
 
 		if Input.is_action_just_pressed("use_item"):
 			use_item()
@@ -159,10 +165,12 @@ func use_item():
 				get_parent().figure.hitbox.disabled = false
 
 func equip_item(obj_id):
-	if obj_id == 'flashlight':
-		$Pivot/Flashlight.visible = true
-	else:
-		$Pivot/Flashlight.visible = false
+	if inventory.has(obj_id):
+		if inventory[obj_id] > 0:
+			if obj_id == 'flashlight':
+				$Pivot/Flashlight.visible = true
+			else:
+				$Pivot/Flashlight.visible = false
 
 
 
