@@ -9,7 +9,10 @@ extents = Vector3( 0.0301573, 0.181875, 0.507704 )
 
 [node name="Axe" type="StaticBody"]
 script = ExtResource( 1 )
+object_id = "axe"
 details = "Don't axe me, axe the guy behind you."
+collectable = true
+drop_amount = 1
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 mesh = ExtResource( 3 )
