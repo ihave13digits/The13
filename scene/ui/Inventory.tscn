@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://image/item/axe.png" type="Texture" id=1]
+[ext_resource path="res://image/item/flashlight.png" type="Texture" id=2]
+[ext_resource path="res://scene/ui/Inventory.gd" type="Script" id=3]
+
+[node name="Inventory" type="CanvasLayer"]
+script = ExtResource( 3 )
+
+[node name="Center" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="List" type="ItemList" parent="Center"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -180.0
+margin_top = -256.0
+margin_right = 180.0
+margin_bottom = 256.0
+items = [ "axe", ExtResource( 1 ), false, "flashlight", ExtResource( 2 ), false ]
+same_column_width = true
+fixed_column_width = 320
+fixed_icon_size = Vector2( 256, 256 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="item_selected" from="Center/List" to="." method="_on_ItemList_item_selected"]
