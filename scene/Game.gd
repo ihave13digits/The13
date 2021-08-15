@@ -29,7 +29,7 @@ func update_cursor():
 		cursor.modulate = Color(1.0, 1.0, 1.0, 0.125)
 
 func toggle_pause():
-	var menu = load("res://scene/ui/Settings.tscn").instance()
+	var menu = load("res://scene/ui/PauseMenu.tscn").instance()
 	add_child(menu)
 
 func spawn(m='worm'):
