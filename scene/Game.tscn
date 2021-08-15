@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scene/Game.gd" type="Script" id=1]
 [ext_resource path="res://scene/test.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://scene/ui/HUD.tscn" type="PackedScene" id=4]
 [ext_resource path="res://audio/effect/worm_chase.ogg" type="AudioStream" id=5]
 [ext_resource path="res://scene/object/Axe.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scene/object/Flashlight.tscn" type="PackedScene" id=7]
 [ext_resource path="res://audio/effect/church_bell.wav" type="AudioStream" id=8]
 [ext_resource path="res://scene/entity/Figure.tscn" type="PackedScene" id=10]
 
@@ -35,5 +36,8 @@ transform = Transform( 0.0982526, -0.363244, 0.926499, -0.994496, -0.00180474, 0
 [node name="Figure" parent="." instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9735, 0, -4.13919 )
 visible = false
+
+[node name="Flashlight" parent="." instance=ExtResource( 7 )]
+transform = Transform( -0.38531, -0.92193, -0.0397687, 0.922787, -0.384952, -0.0166054, 0, -0.0430963, 0.999071, 5.41308, 1.29777, -3.99813 )
 
 [editable path="Spatial"]

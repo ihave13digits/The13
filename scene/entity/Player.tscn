@@ -86,6 +86,7 @@ cast_to = Vector3( 0, 0, 2.5 )
 
 [node name="Flashlight" type="SpotLight" parent="Pivot"]
 transform = Transform( -0.984808, -0.0301537, 0.17101, 0, 0.984807, 0.173648, -0.173648, 0.17101, -0.969846, -0.5, -0.75, 0 )
+visible = false
 layers = 3
 light_energy = 6.66
 light_specular = 0.56

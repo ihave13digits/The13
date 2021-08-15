@@ -4,13 +4,13 @@ signal pause_game
 signal update_cursor
 signal triggered_event
 
-var gravity = Vector3.DOWN * 0.5  # strength of gravity
+var gravity = Vector3.DOWN * 0.1  # strength of gravity
 
 var player_height = 1.8 # about 5'10"
 
 var speed = 400 # movement speed
 var run_speed = 600 # running speed
-var jump_speed = 400  # jump strength
+var jump_speed = 400000000  # jump strength
 var spin = 0.1  # rotation speed
 var pan_speed = 24.0
 
@@ -26,6 +26,11 @@ var steps_taken = 0
 var jump = false
 var aiming = false
 var has_control = true
+
+var inventory = {
+	'axe' : 0,
+	'flashlight' : 0,
+	}
 
 onready var pivot = $Pivot
 onready var cursor = $Pivot/Camera/Cursor
@@ -61,7 +66,7 @@ func _physics_process(delta):
 			use_item()
 
 		if Input.is_action_just_pressed("jump"):# && is_on_floor():
-			vel -= gravity*jump_speed
+			vel += Vector3.UP*jump_speed
 
 		if Input.is_action_pressed("aim_flashlight"):
 			aiming = true
@@ -134,13 +139,31 @@ func update_distance(delta):
 	if steps_taken > 17:
 		emit_signal("triggered_event")
 
+
+
+func add_item(obj_id, amnt):
+	if inventory.has(obj_id):
+		inventory[obj_id] += amnt
+
 func use_item():
 	if cursor.get_collider() != null:
 		if cursor.get_collider().has_method('get_message'):
+			if cursor.get_collider().collectable:
+				add_item(cursor.get_collider().object_id, cursor.get_collider().drop_amount)
+				cursor.get_collider().queue_free()
+			
+			# Needs Refining
 			if is_instance_valid(get_parent().figure):
 				get_parent().display_message(cursor.get_collider().get_message())
 				get_parent().figure.visible = true
 				get_parent().figure.hitbox.disabled = false
+
+func equip_item(obj_id):
+	if obj_id == 'flashlight':
+		$Pivot/Flashlight.visible = true
+	else:
+		$Pivot/Flashlight.visible = false
+
 
 
 func update_quality():
