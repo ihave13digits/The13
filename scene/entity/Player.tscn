@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scene/entity/Player.gd" type="Script" id=1]
 [ext_resource path="res://audio/effect/dirt0.wav" type="AudioStream" id=2]
 [ext_resource path="res://default_env.tres" type="Environment" id=3]
+[ext_resource path="res://mesh/axe.obj" type="ArrayMesh" id=4]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.36
@@ -34,7 +35,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.25, 0.5 ),
+"times": PoolRealArray( 0, 0.325, 0.75 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0.1, 0 ), Vector3( 0, 0, 0 ) ]
@@ -53,7 +54,23 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id=4]
-resource_name = "step"
+resource_name = "axe"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Pivot/Held:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( -30.232, 6.91225e-07, 20.472 ), Vector3( 70.627, 38.268, 2.27467 ), Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.75
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Pivot/Flashlight:rotation_degrees")
@@ -62,7 +79,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.25, 0.5 ),
+"times": PoolRealArray( 0, 0.35, 0.75 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Vector3( 0, -180, 0 ), Vector3( -10, -190, 0 ), Vector3( 0, -180, 0 ) ]
@@ -76,7 +93,7 @@ script = ExtResource( 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0 )
 
 [node name="Camera" type="Camera" parent="Pivot"]
-transform = Transform( -1, 0, 3.25841e-07, 0, 1, 0, -3.25841e-07, 0, -1, 0, 0.1, 0 )
+transform = Transform( -1, 0, 3.25841e-07, 0, 1, 0, -3.25841e-07, 0, -1, 0, 0, 0 )
 environment = ExtResource( 3 )
 
 [node name="Cursor" type="RayCast" parent="Pivot/Camera"]
@@ -85,7 +102,7 @@ enabled = true
 cast_to = Vector3( 0, 0, 2.5 )
 
 [node name="Flashlight" type="SpotLight" parent="Pivot"]
-transform = Transform( -0.984808, -0.0301537, 0.17101, 0, 0.984807, 0.173648, -0.173648, 0.17101, -0.969846, -0.5, -0.75, 0 )
+transform = Transform( -1, 0, 8.74227e-08, 0, 0.999999, 0, -8.74228e-08, 0, -0.999999, -0.5, -0.75, 0 )
 visible = false
 layers = 3
 light_energy = 6.66
@@ -97,6 +114,15 @@ spot_range = 14.0
 spot_attenuation = 1.1487
 spot_angle = 11.8
 spot_angle_attenuation = 1.03526
+
+[node name="Held" type="Spatial" parent="Pivot"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, -0.75, 0.55 )
+visible = false
+
+[node name="Item" type="MeshInstance" parent="Pivot/Held"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
+mesh = ExtResource( 4 )
+material/0 = null
 
 [node name="Box" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 1, 0 )
@@ -110,6 +136,7 @@ anims/fall_down = SubResource( 2 )
 anims/step = SubResource( 3 )
 
 [node name="Swinging" type="AnimationPlayer" parent="."]
-anims/step = SubResource( 4 )
+anims/axe = SubResource( 4 )
+anims/step = SubResource( 5 )
 
 [connection signal="finished" from="Footsteps" to="." method="_on_Footsteps_finished"]
