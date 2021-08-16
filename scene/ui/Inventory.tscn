@@ -25,14 +25,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -180.0
+margin_left = -80.0
 margin_top = -256.0
-margin_right = 180.0
+margin_right = 80.0
 margin_bottom = 256.0
 items = [ "axe", ExtResource( 1 ), false, "flashlight", ExtResource( 2 ), false ]
 same_column_width = true
 fixed_column_width = 320
-fixed_icon_size = Vector2( 256, 256 )
+icon_scale = 0.5
 __meta__ = {
 "_edit_use_anchors_": false
 }

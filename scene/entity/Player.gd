@@ -4,7 +4,7 @@ signal pause_game
 signal update_cursor
 signal triggered_event
 
-var gravity = Vector3.DOWN * 0.1  # strength of gravity
+var gravity = Vector3.DOWN * 0.5  # strength of gravity
 
 var player_height = 1.8 # about 5'10"
 
@@ -27,6 +27,8 @@ var jump = false
 var aiming = false
 var has_control = true
 
+
+var equipped_item = ''
 var inventory = {
 	'axe' : 0,
 	'flashlight' : 0,
@@ -159,18 +161,24 @@ func use_item():
 				cursor.get_collider().queue_free()
 			
 			# Needs Refining
-			if is_instance_valid(get_parent().figure):
-				get_parent().display_message(cursor.get_collider().get_message())
+			if cursor.get_collider().object_id == 'axe' && is_instance_valid(get_parent().figure):
 				get_parent().figure.visible = true
 				get_parent().figure.hitbox.disabled = false
+			get_parent().display_message(cursor.get_collider().get_message())
+	if equipped_item == 'axe':
+		$Swinging.play('axe')
 
 func equip_item(obj_id):
 	if inventory.has(obj_id):
 		if inventory[obj_id] > 0:
 			if obj_id == 'flashlight':
+				$Pivot/Held.visible = false
 				$Pivot/Flashlight.visible = true
-			else:
+			if obj_id == 'axe':
+				$Pivot/Held.visible = true
 				$Pivot/Flashlight.visible = false
+				$Pivot/Held/Item.set_material_override(load("res://material/object_material.tres"))
+	equipped_item = obj_id
 
 
 
