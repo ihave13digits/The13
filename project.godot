@@ -11,7 +11,7 @@ config_version=4
 [application]
 
 config/name="2scary5me"
-run/main_scene="res://scene/Game.tscn"
+run/main_scene="res://scene/ui/MainMenu.tscn"
 config/icon="res://image/ui/icon.png"
 
 [autoload]
