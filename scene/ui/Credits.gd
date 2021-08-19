@@ -56,7 +56,7 @@ func _process(_delta):
 
 
 func end_credits():
-	get_tree().quit()
+	var _can_do = get_tree().change_scene("res://scene/ui/MainMenu.tscn")
 
 
 

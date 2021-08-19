@@ -8,6 +8,11 @@ var trigger_worm = false
 
 var env
 
+var icon = {
+	'axe' : preload("res://image/item/axe.png"),
+	'flashlight' : preload("res://image/item/flashlight.png"),
+	}
+
 var footstep = {
 	'dirt' : [
 		preload("res://audio/effect/dirt0.wav"),

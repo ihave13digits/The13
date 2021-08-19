@@ -1,0 +1,91 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://scene/ui/MainMenu.gd" type="Script" id=1]
+[ext_resource path="res://mesh/flashlight.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://material/object_material.tres" type="Material" id=3]
+[ext_resource path="res://mesh/horizon.obj" type="ArrayMesh" id=4]
+[ext_resource path="res://material/grass.tres" type="Material" id=5]
+
+[sub_resource type="Animation" id=1]
+resource_name = "lighting"
+length = 30.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Pivot:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 7.5, 15, 22.5, 30 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 3, 0 ), Vector3( 0, 3, 0.666 ), Vector3( 0.067, 3, 0 ), Vector3( -0.067, 3, -0.067 ), Vector3( 0, 3, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Pivot:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 7.5, 22.5, 30 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( -6.66, 0, 0 ), Vector3( -2.22, 0, 6.66 ), Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "selection"
+
+[node name="MainMenu" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="Room" type="MeshInstance" parent="."]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 1.61727, 0 )
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 5 )
+
+[node name="Pivot" type="Spatial" parent="."]
+transform = Transform( 0.99984, -0.0178633, 0, 0.0177662, 0.994404, 0.10414, -0.00186029, -0.104124, 0.994563, 0.0205939, 3, 0.46129 )
+
+[node name="Lamp" type="MeshInstance" parent="Pivot"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+mesh = ExtResource( 2 )
+material/0 = ExtResource( 3 )
+
+[node name="Light" type="SpotLight" parent="Pivot/Lamp"]
+transform = Transform( 1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 6.2832e-09, 0.143743 )
+light_energy = 6.66
+light_specular = 1.0
+shadow_enabled = true
+spot_angle = 15.0
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+autoplay = "lighting"
+anims/lighting = SubResource( 1 )
+anims/selection = SubResource( 2 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 6 )
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Bottom" type="Control" parent="UI"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -20.0
+margin_top = -40.0
+margin_right = 20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Play" type="Button" parent="UI/Bottom"]
+margin_right = 12.0
+margin_bottom = 20.0
+text = "Play"
+
+[connection signal="button_up" from="UI/Bottom/Play" to="." method="_on_Play_button_up"]

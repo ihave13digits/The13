@@ -169,6 +169,7 @@ func use_item():
 		$Swinging.play('axe')
 
 func equip_item(obj_id):
+	print(obj_id)
 	if inventory.has(obj_id):
 		if inventory[obj_id] > 0:
 			if obj_id == 'flashlight':
