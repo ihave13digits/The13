@@ -100,7 +100,7 @@ transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0
 script = ExtResource( 3 )
 
 [node name="Armature" parent="." index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07143, 0 )
+transform = Transform( -1, 0, -8.66252e-07, 0, 1, 0, 8.66252e-07, 0, -1, 0, 1.07143, 0 )
 
 [node name="Plane" parent="Armature/Skeleton" index="0"]
 material/0 = ExtResource( 2 )

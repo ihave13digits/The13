@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/hanginglight.obj-e726429607fe5d2504f5598cb29a74a1.mesh"
+
+[deps]
+
+files=[ "res://.import/hanginglight.obj-e726429607fe5d2504f5598cb29a74a1.mesh" ]
+
+source_file="res://mesh/hanginglight.obj"
+dest_files=[ "res://.import/hanginglight.obj-e726429607fe5d2504f5598cb29a74a1.mesh", "res://.import/hanginglight.obj-e726429607fe5d2504f5598cb29a74a1.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

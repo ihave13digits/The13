@@ -43,6 +43,7 @@ onready var camera = $Pivot/Camera
 
 
 func _ready():
+	update_quality()
 	pivot.translation = Vector3(0, player_height-0.05, 0)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
@@ -169,7 +170,6 @@ func use_item():
 		$Swinging.play('axe')
 
 func equip_item(obj_id):
-	print(obj_id)
 	if inventory.has(obj_id):
 		if inventory[obj_id] > 0:
 			if obj_id == 'flashlight':
@@ -184,6 +184,7 @@ func equip_item(obj_id):
 
 
 func update_quality():
+	camera.far = Data.settings['render_distance']
 	flashlight.shadow_enabled = Data.bells_and_whistles
 
 

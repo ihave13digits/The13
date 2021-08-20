@@ -1,5 +1,7 @@
 extends Node
 
+var id = "game"
+
 onready var hud = $HUD
 onready var cursor = $HUD/Center/Cursor
 onready var player
@@ -16,6 +18,10 @@ func _ready():
 	player.connect('triggered_event', self, 'spawn')
 	player.connect('pause_game', self, 'toggle_pause')
 	hud.connect('end_game', self, 'end_game')
+
+func update_quality():
+	world.update_quality()
+	player.update_quality()
 
 func display_message(message):
 	var msg = load("res://scene/ui/PopupMessage.tscn").instance()
@@ -44,6 +50,7 @@ func spawn(m='worm'):
 		'figure' :
 			var i = Data.mob[m].instance()
 			i.translation = Vector3()
+			i.player = player
 			add_child(i)
 
 func end_game():

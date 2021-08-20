@@ -1,12 +1,16 @@
 extends Node
 
 # Configuration Settings
+var env
+
 var bells_and_whistles = true
+
+var settings = {
+	'render_distance' : 400,
+	}
 
 # Event Triggers
 var trigger_worm = false
-
-var env
 
 var icon = {
 	'axe' : preload("res://image/item/axe.png"),
