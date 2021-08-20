@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/room.obj-92a562d9c2a378db3a83961f5604f1fc.mesh"
+
+[deps]
+
+files=[ "res://.import/room.obj-92a562d9c2a378db3a83961f5604f1fc.mesh" ]
+
+source_file="res://mesh/room.obj"
+dest_files=[ "res://.import/room.obj-92a562d9c2a378db3a83961f5604f1fc.mesh", "res://.import/room.obj-92a562d9c2a378db3a83961f5604f1fc.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

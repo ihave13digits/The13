@@ -8,7 +8,7 @@ func _ready():
 	$Center/TogglePostProcessing.pressed = Data.env.environment.adjustment_enabled
 	$Center/ToggleBellsAndWhistles.pressed = Data.bells_and_whistles
 	# Sliders
-	$Center/RenderingDistance.value = get_parent().player.camera.far
+	$Center/RenderingDistance.value = Data.settings['render_distance']
 	$Center/BlurSettings.value = Data.env.environment.dof_blur_far_quality
 	# Slider Visibility
 	$Center/BlurSettings.visible = Data.env.environment.dof_blur_far_enabled
@@ -20,7 +20,7 @@ func _on_BlurSettings_value_changed(value):
 		2 : Data.env.environment.dof_blur_far_quality = Environment.DOF_BLUR_QUALITY_HIGH
 
 func _on_RenderingDistance_value_changed(value):
-	get_parent().player.camera.far = value
+	Data.settings['render_distance'] = value
 
 
 
@@ -33,12 +33,13 @@ func _on_TogglePostProcessing_button_up():
 
 func _on_ToggleBellsAndWhistles_button_up():
 	Data.bells_and_whistles = $Center/ToggleBellsAndWhistles.pressed
-	get_parent().world.update_quality()
-	get_parent().player.update_quality()
+	if get_parent().has_method("update_quality"):
+		get_parent().update_quality()
 
 
 
 func _on_Done_button_up():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	get_parent().player.has_control = true
+	if get_parent().has_method("update_quality"):
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		get_parent().player.has_control = true
 	queue_free()
