@@ -26,6 +26,8 @@ var steps_taken = 0
 var jump = false
 var aiming = false
 var has_control = true
+var can_walk = true
+var can_look = true
 
 
 var equipped_item = ''
@@ -85,31 +87,33 @@ func _physics_process(delta):
 			aiming = false
 			flashlight.translation = Vector3(-0.5, -0.75, 0)
 
-		if Input.is_action_pressed("move_forward"):
-			vel += pivot.get_transform().basis.z
-			can_do = true
-		elif Input.is_action_pressed("move_back"):
-			vel -= pivot.get_transform().basis.z
-			can_do = true
-		if Input.is_action_pressed("strafe_right"):
-			vel -= pivot.get_transform().basis.x
-			can_do = true
-		elif Input.is_action_pressed("strafe_left"):
-			vel += pivot.get_transform().basis.x
-			can_do = true
+		if can_walk:
+			if Input.is_action_pressed("move_forward"):
+				vel += pivot.get_transform().basis.z
+				can_do = true
+			elif Input.is_action_pressed("move_back"):
+				vel -= pivot.get_transform().basis.z
+				can_do = true
+			if Input.is_action_pressed("strafe_right"):
+				vel -= pivot.get_transform().basis.x
+				can_do = true
+			elif Input.is_action_pressed("strafe_left"):
+				vel += pivot.get_transform().basis.x
+				can_do = true
 
-		if Input.is_action_pressed("pan_up"):
-			_pitch -= pan_speed * spin
-			update_rotations()
-		elif Input.is_action_pressed("pan_down"):
-			_pitch += pan_speed * spin
-			update_rotations()
-		if Input.is_action_pressed("pan_left"):
-			_yaw += pan_speed * spin
-			update_rotations()
-		elif Input.is_action_pressed("pan_right"):
-			_yaw -= pan_speed * spin
-			update_rotations()
+		if can_look:
+			if Input.is_action_pressed("pan_up"):
+				_pitch -= pan_speed * spin
+				update_rotations()
+			elif Input.is_action_pressed("pan_down"):
+				_pitch += pan_speed * spin
+				update_rotations()
+			if Input.is_action_pressed("pan_left"):
+				_yaw += pan_speed * spin
+				update_rotations()
+			elif Input.is_action_pressed("pan_right"):
+				_yaw -= pan_speed * spin
+				update_rotations()
 
 		if can_do:
 			update_distance(delta)
@@ -122,14 +126,15 @@ func _physics_process(delta):
 
 func _input(event):
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		if cursor.get_collider() != null:
-			var target = cursor.get_collider().get_parent()
-			if target.has_method('hide_from_player') && target.visible == true:
-				target.hide_from_player()
-		emit_signal("update_cursor")
-		_yaw -= event.relative.x * spin
-		_pitch += event.relative.y * spin
-		update_rotations()
+		if can_look:
+			if cursor.get_collider() != null:
+				var target = cursor.get_collider().get_parent()
+				if target.has_method('hide_from_player') && target.visible == true:
+					target.hide_from_player()
+			emit_signal("update_cursor")
+			_yaw -= event.relative.x * spin
+			_pitch += event.relative.y * spin
+			update_rotations()
 
 
 func update_rotations():

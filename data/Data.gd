@@ -42,3 +42,8 @@ var mob = {
 func _ready():
 	env = WorldEnvironment.new()
 	env.set_environment(load("res://default_env.tres"))
+	
+	var threads = OS.get_processor_count()
+	
+	env.environment.dof_blur_far_enabled = bool(threads > 4)
+	bells_and_whistles = bool(threads > 8)
