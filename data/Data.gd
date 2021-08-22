@@ -7,6 +7,7 @@ var bells_and_whistles = true
 
 var settings = {
 	'render_distance' : 400,
+	'detail_level' : 1000,
 	}
 
 # Event Triggers

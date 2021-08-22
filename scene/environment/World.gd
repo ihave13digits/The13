@@ -6,6 +6,9 @@ var grass3 = null
 
 
 func _ready():
+	Data.env.environment.fog_depth_end = 24
+	Data.env.environment.fog_transmit_curve = 0.15
+	$HorizonAnim.playback_speed = 0.01
 	update_quality()
 
 func update_quality():

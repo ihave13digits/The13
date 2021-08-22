@@ -12,7 +12,6 @@ onready var figure = $Figure
 
 
 func _ready():
-	Data.env.environment.fog_depth_end = 16
 	player = Data.mob['player'].instance()
 	add_child(player)
 	player.connect('update_cursor', self, 'update_cursor')

@@ -3,7 +3,9 @@ extends Spatial
 
 
 func _ready():
+	update_quality()
 	Data.env.environment.fog_depth_end = 8
+	Data.env.environment.fog_transmit_curve = 4.0
 	$LightmotionAnim.play("swing")
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
@@ -15,6 +17,10 @@ func play_click_anim(anim_name):
 
 func update_quality():
 	$LightPivot/Lamp/Light.shadow_enabled = Data.bells_and_whistles
+	if Data.bells_and_whistles:
+		$Room.get_surface_material(0).albedo_texture = load("res://image/env/menu_room_texture1024.png")
+	else:
+		$Room.get_surface_material(0).albedo_texture = load("res://image/env/menu_room_texture512.png")
 
 func _on_Play_button_up():
 	play_click_anim('start')

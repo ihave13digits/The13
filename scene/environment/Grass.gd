@@ -1,11 +1,11 @@
 extends Spatial
 
-var size = 100
+var size = 250
 
 
 
 func _ready():
-	$Meshes.multimesh.instance_count = 1000
+	$Meshes.multimesh.instance_count = Data.settings['detail_level']
 	
 	for i in range($Meshes.multimesh.instance_count):
 		var X = (randi() % size) - float(size)/2.0 + randf()
