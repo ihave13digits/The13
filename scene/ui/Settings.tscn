@@ -54,6 +54,23 @@ margin_right = -10.9997
 margin_bottom = 14.0
 text = "Render Distance"
 
+[node name="DetailLevel" type="HSlider" parent="Center"]
+margin_left = 318.0
+margin_top = -206.667
+margin_right = 518.0
+margin_bottom = -190.667
+max_value = 50000.0
+value = 1000.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Center/DetailLevel"]
+margin_left = -116.0
+margin_right = -10.9997
+margin_bottom = 14.0
+text = "Detail Level"
+
 [node name="ToggleBlur" type="CheckButton" parent="Center"]
 margin_left = -378.0
 margin_top = -268.717
@@ -142,6 +159,7 @@ __meta__ = {
 
 [connection signal="value_changed" from="Center/BlurSettings" to="." method="_on_BlurSettings_value_changed"]
 [connection signal="value_changed" from="Center/RenderingDistance" to="." method="_on_RenderingDistance_value_changed"]
+[connection signal="value_changed" from="Center/DetailLevel" to="." method="_on_DetailLevel_value_changed"]
 [connection signal="button_up" from="Center/ToggleBlur" to="." method="_on_ToggleBlur_button_up"]
 [connection signal="button_up" from="Center/TogglePostProcessing" to="." method="_on_TogglePostProcessing_button_up"]
 [connection signal="button_up" from="Center/ToggleBellsAndWhistles" to="." method="_on_ToggleBellsAndWhistles_button_up"]
