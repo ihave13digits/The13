@@ -21,7 +21,7 @@ autoplay = true
 [node name="ChurchBells" type="AudioStreamPlayer3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.4531, 34.5699, 1.04062 )
 stream = ExtResource( 8 )
-unit_db = 17.088
+unit_size = 10.0
 autoplay = true
 
 [node name="HUD" parent="." instance=ExtResource( 4 )]

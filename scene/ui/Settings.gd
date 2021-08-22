@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+signal update_quality
+
 
 
 func _ready():
@@ -33,8 +35,7 @@ func _on_TogglePostProcessing_button_up():
 
 func _on_ToggleBellsAndWhistles_button_up():
 	Data.bells_and_whistles = $Center/ToggleBellsAndWhistles.pressed
-	if get_parent().has_method("update_quality"):
-		get_parent().update_quality()
+	emit_signal("update_quality")
 
 
 
