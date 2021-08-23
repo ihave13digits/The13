@@ -1,8 +1,8 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://scene/ui/MainMenu.gd" type="Script" id=1]
-[ext_resource path="res://mesh/hanginglight.obj" type="ArrayMesh" id=2]
-[ext_resource path="res://material/object_glow.tres" type="Material" id=3]
+[ext_resource path="res://mesh/object/hanginglight.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://material/object_dusty.tres" type="Material" id=3]
 [ext_resource path="res://mesh/room.obj" type="ArrayMesh" id=4]
 [ext_resource path="res://image/env/menu_room_texture1024.png" type="Texture" id=5]
 [ext_resource path="res://scene/object/Axe.tscn" type="PackedScene" id=6]
@@ -11,10 +11,16 @@
 [ext_resource path="res://default_theme.tres" type="Theme" id=9]
 [ext_resource path="res://audio/music/mainmenu.ogg" type="AudioStream" id=10]
 [ext_resource path="res://scene/object/Box.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scene/entity/Roach.tscn" type="PackedScene" id=12]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0.519531, 0.507355, 0.507355, 1 )
 albedo_texture = ExtResource( 5 )
+
+[sub_resource type="BoxShape" id=7]
+
+[sub_resource type="BoxShape" id=8]
+extents = Vector3( 5.91513, 3.36167, 0.161266 )
 
 [sub_resource type="Animation" id=2]
 length = 8.0
@@ -226,6 +232,48 @@ material/0 = SubResource( 1 )
 [node name="Axe" parent="Room" instance=ExtResource( 6 )]
 transform = Transform( 0.0274926, -0.957837, -0.285992, 0.995411, -4.35108e-08, 0.0956894, -0.0916549, -0.287311, 0.953441, 2.05344, 0.022, -1.82716 )
 
+[node name="Box" type="StaticBody" parent="Room"]
+
+[node name="Ceiling" type="CollisionShape" parent="Room/Box"]
+transform = Transform( 5, 0, 0, 0, 0.01, 0, 0, 0, 5, 0, 10, 0 )
+shape = SubResource( 7 )
+
+[node name="Floor" type="CollisionShape" parent="Room/Box"]
+transform = Transform( 5, 0, 0, 0, 0.1, 0, 0, 0, 5, 0, -0.1, 0 )
+shape = SubResource( 7 )
+
+[node name="Wall1" type="CollisionShape" parent="Room/Box"]
+transform = Transform( 5, 0, 0, 0, -4.37114e-09, -5, 0, 0.1, -2.18557e-07, 0, 5, 5 )
+shape = SubResource( 7 )
+
+[node name="Wall2" type="CollisionShape" parent="Room/Box"]
+transform = Transform( 5, 0, 0, 0, -4.37114e-09, -5, 0, 0.1, -2.18557e-07, 0, 5, -5 )
+shape = SubResource( 7 )
+
+[node name="Wall3" type="CollisionShape" parent="Room/Box"]
+transform = Transform( -2.18557e-07, -0.1, 0, 5, -4.37114e-09, 0, 0, 0, 5, 5, 5, 0 )
+shape = SubResource( 7 )
+
+[node name="Wall4" type="CollisionShape" parent="Room/Box"]
+transform = Transform( -2.18557e-07, -0.1, 0, 5, -4.37114e-09, 0, 0, 0, 5, -5, 5, 0 )
+shape = SubResource( 7 )
+
+[node name="Barrier1" type="CollisionShape" parent="Room/Box"]
+transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 3.90226, 0, 3.90226 )
+shape = SubResource( 8 )
+
+[node name="Barrier2" type="CollisionShape" parent="Room/Box"]
+transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -3.69495, 0, 3.52316 )
+shape = SubResource( 8 )
+
+[node name="Barrier3" type="CollisionShape" parent="Room/Box"]
+transform = Transform( -0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 2.7589, 0, -3.06913 )
+shape = SubResource( 8 )
+
+[node name="Barrier4" type="CollisionShape" parent="Room/Box"]
+transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -3.17747, 0, -3.41653 )
+shape = SubResource( 8 )
+
 [node name="Figure" parent="." instance=ExtResource( 7 )]
 transform = Transform( -2, 0, -1.78814e-07, 0, 2, 0, 1.78814e-07, 0, -2, 0, 0, -5.5 )
 
@@ -249,6 +297,17 @@ spot_range = 4.0
 spot_attenuation = 0.111226
 spot_angle_attenuation = 0.3
 
+[node name="BoxPile" type="Spatial" parent="."]
+
+[node name="Box" parent="BoxPile" instance=ExtResource( 11 )]
+transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -3, 0, -3 )
+
+[node name="Box2" parent="BoxPile" instance=ExtResource( 11 )]
+transform = Transform( -0.786514, 0, 1.27726, 0, 1.5, 0, -1.27726, 0, -0.786514, -3.25929, 0.505037, -2.8223 )
+
+[node name="Box3" parent="BoxPile" instance=ExtResource( 11 )]
+transform = Transform( -0.133398, 0, 0.991062, 0, 1, 0, -0.991062, 0, -0.133398, -3.44916, 0, -2.55084 )
+
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.92388, 0.382683, 0, -0.382683, 0.92388, 0, 2.75, 2 )
 
@@ -270,14 +329,25 @@ stream = ExtResource( 10 )
 volume_db = -8.078
 autoplay = true
 
-[node name="Box" parent="." instance=ExtResource( 11 )]
-transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -3, 0, -3 )
+[node name="Critters" type="Spatial" parent="."]
 
-[node name="Box2" parent="." instance=ExtResource( 11 )]
-transform = Transform( -0.786514, 0, 1.27726, 0, 1.5, 0, -1.27726, 0, -0.786514, -3.25929, 0.505037, -2.8223 )
+[node name="Roach" parent="Critters" instance=ExtResource( 12 )]
+transform = Transform( -0.655242, 0, -0.755419, 0, 1, 0, 0.755419, 0, -0.655242, -3.10976, 0, -2.53797 )
 
-[node name="Box3" parent="." instance=ExtResource( 11 )]
-transform = Transform( -0.133398, 0, 0.991062, 0, 1, 0, -0.991062, 0, -0.133398, -3.44916, 0, -2.55084 )
+[node name="Roach2" parent="Critters" instance=ExtResource( 12 )]
+transform = Transform( -0.558753, 0, 1.92036, 0, 2, 0, -1.92036, 0, -0.558753, 3.77657, 0, -1.53322 )
+
+[node name="Roach3" parent="Critters" instance=ExtResource( 12 )]
+transform = Transform( -2.65374, 0, -1.39916, 0, 3, 0, 1.39916, 0, -2.65374, -1.09582, 0, -3.80898 )
+
+[node name="Roach4" parent="Critters" instance=ExtResource( 12 )]
+transform = Transform( 3.98254, 0, 0.373375, 0, 4, 0, -0.373375, 0, 3.98254, 0, 0, 4.82665 )
+
+[node name="Roach5" parent="Critters" instance=ExtResource( 12 )]
+transform = Transform( -0.241983, 0, -4.99414, 0, 5, 0, 4.99414, 0, -0.241983, -4.07427, 0, 0 )
+
+[node name="Roach6" parent="Critters" instance=ExtResource( 12 )]
+transform = Transform( 4.53457, 0, -3.92908, 0, 6, 0, 3.92908, 0, 4.53457, -3.03738, 0, 3.50546 )
 
 [connection signal="mouse_entered" from="UI/Top/InteractLight" to="." method="_on_InteractLight_mouse_entered"]
 [connection signal="button_up" from="UI/Bottom/Play" to="." method="_on_Play_button_up"]

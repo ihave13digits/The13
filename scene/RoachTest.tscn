@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scene/environment/World.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scene/entity/Roach.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scene/object/Axe.tscn" type="PackedScene" id=4]
+
+[node name="RoachTest" type="Spatial"]
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 1, 1.5, 1 )
+
+[node name="World" parent="." instance=ExtResource( 1 )]
+script = null
+
+[node name="Roach" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.82971, 0, -0.558195, 0, 1, 0, 0.558195, 0, 0.82971, 0.545267, 0, 0.394211 )
+
+[node name="Roach2" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1.70026, 0, 1.05314, 0, 2, 0, -1.05314, 0, 1.70026, 0.592624, 0, 0.0630088 )
+
+[node name="Roach3" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1.83126, 0, -2.37623, 0, 3, 0, 2.37623, 0, 1.83126, 0.532526, 0, 0.262062 )
+
+[node name="Roach4" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.948034, 0, 3.88603, 0, 4, 0, -3.88603, 0, 0.948034, 0.331168, 0, 0.553416 )
+
+[node name="Roach5" parent="." instance=ExtResource( 2 )]
+transform = Transform( -3.93979, 0, 3.07865, 0, 5, 0, -3.07865, 0, -3.93979, 0.191273, 0, 0.348304 )
+
+[node name="Roach6" parent="." instance=ExtResource( 2 )]
+transform = Transform( 3.19362, 0, 5.07945, 0, 6, 0, -5.07945, 0, 3.19362, 0.322639, 0, 0.136099 )
+
+[node name="Axe" parent="." instance=ExtResource( 4 )]
+transform = Transform( 0.508756, 0.860911, -3.76316e-08, 0, -4.37114e-08, -1, -0.860911, 0.508756, -2.22384e-08, -0.60272, 3.07683e-08, 0.641574 )
+
+[node name="Axe2" parent="." instance=ExtResource( 4 )]
+transform = Transform( -0.271592, 0.962413, -4.20684e-08, 0, -4.37114e-08, -1, -0.962413, -0.271592, 1.18716e-08, 0.217073, 9.3466e-09, 1.12485 )
+
+[node name="Axe3" parent="." instance=ExtResource( 4 )]
+transform = Transform( -0.989816, 0.142353, -6.22243e-09, 0, -4.37114e-08, -1, -0.142353, -0.989816, 4.32662e-08, 1.15439, -8.06959e-09, 0.857356 )
+
+[node name="Axe4" parent="." instance=ExtResource( 4 )]
+transform = Transform( -0.836889, -0.547373, 2.39264e-08, 0, -4.37114e-08, -1, 0.547373, -0.836889, 3.65816e-08, 1.29356, -5.14554e-08, -0.107117 )
+
+[node name="Axe5" parent="." instance=ExtResource( 4 )]
+transform = Transform( -0.0655427, -0.99785, 4.36174e-08, 0, -4.37114e-08, -1, 0.99785, -0.0655427, 2.86496e-09, 0.757237, -9.42841e-08, -0.927105 )
+
+[node name="Axe6" parent="." instance=ExtResource( 4 )]
+transform = Transform( 0.711462, -0.702725, 3.07171e-08, 0, -4.37114e-08, -1, 0.702725, 0.711462, -3.1099e-08, -0.186829, -1.35639e-07, -0.989115 )
+
+[node name="Axe7" parent="." instance=ExtResource( 4 )]
+transform = Transform( 0.970228, 0.242193, -1.05866e-08, 0, -4.37114e-08, -1, -0.242193, 0.970228, -4.241e-08, -0.844376, -1.76541e-07, -0.323392 )
+
+[editable path="World"]

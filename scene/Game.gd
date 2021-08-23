@@ -41,8 +41,8 @@ func toggle_pause():
 func spawn(m='worm'):
 	match m:
 		'worm' :
-			if Data.trigger_worm == false:
-				Data.trigger_worm = true
+			if Data.trigger['worm'] == false:
+				Data.trigger['worm'] = true
 				var i = Data.mob[m].instance()
 				i.translation = player.translation
 				add_child(i)
@@ -54,4 +54,5 @@ func spawn(m='worm'):
 			add_child(i)
 
 func end_game():
+	Data.trigger['worm'] = true
 	var _can_do = get_tree().change_scene("res://scene/ui/Credits.tscn")
