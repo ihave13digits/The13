@@ -11,7 +11,9 @@ var settings = {
 	}
 
 # Event Triggers
-var trigger_worm = false
+var trigger = {
+	'worm' : false,
+	}
 
 var icon = {
 	'axe' : preload("res://image/item/axe.png"),
@@ -24,6 +26,10 @@ var footstep = {
 		preload("res://audio/effect/dirt1.wav"),
 		preload("res://audio/effect/dirt2.wav"),
 		]
+	}
+
+var equip = {
+	'axe' : "res://mesh/item/axe.obj",
 	}
 
 var object = {

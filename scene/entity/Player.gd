@@ -38,7 +38,9 @@ var inventory = {
 
 onready var pivot = $Pivot
 onready var cursor = $Pivot/Camera/Cursor
-onready var flashlight = $Pivot/Flashlight
+onready var flashlight_h = $Pivot/Camera/Flashlight
+onready var flashlight_r = $Arms/Right/Flashlight
+onready var flashlight_l = $Arms/Left/Flashlight
 onready var bob_anim = $Bobbing
 onready var camera = $Pivot/Camera
 
@@ -81,24 +83,24 @@ func _physics_process(delta):
 
 		if Input.is_action_pressed("aim_flashlight"):
 			aiming = true
-			flashlight.translation = Vector3(-0.125, -0.05, 0)
-			flashlight.rotation_degrees = Vector3(0, 180, 0)
+			set_flashlights()
 		if Input.is_action_just_released("aim_flashlight"):
 			aiming = false
-			flashlight.translation = Vector3(-0.5, -0.75, 0)
+			set_flashlights()
+			
 
 		if can_walk:
 			if Input.is_action_pressed("move_forward"):
-				vel += pivot.get_transform().basis.z
+				vel += $Arms.get_transform().basis.z
 				can_do = true
 			elif Input.is_action_pressed("move_back"):
-				vel -= pivot.get_transform().basis.z
+				vel -= $Arms.get_transform().basis.z
 				can_do = true
 			if Input.is_action_pressed("strafe_right"):
-				vel -= pivot.get_transform().basis.x
+				vel -= $Arms.get_transform().basis.x
 				can_do = true
 			elif Input.is_action_pressed("strafe_left"):
-				vel += pivot.get_transform().basis.x
+				vel += $Arms.get_transform().basis.x
 				can_do = true
 
 		if can_look:
@@ -144,6 +146,7 @@ func update_rotations():
 		_pitch = -max_pitch
 	pivot.set_rotation(Vector3(0, deg2rad(_yaw), 0))
 	pivot.rotate(pivot.get_transform().basis.x.normalized(), deg2rad(_pitch))
+	$Arms.set_rotation(Vector3(0, deg2rad(_yaw), 0))
 
 func update_distance(delta):
 	distance_tick += delta
@@ -172,25 +175,40 @@ func use_item():
 				get_parent().figure.hitbox.disabled = false
 			get_parent().display_message(cursor.get_collider().get_message())
 	if equipped_item == 'axe':
-		$Swinging.play('axe')
+		$Equipped.play('axe')
 
 func equip_item(obj_id):
 	if inventory.has(obj_id):
 		if inventory[obj_id] > 0:
 			if obj_id == 'flashlight':
-				$Pivot/Held.visible = false
-				$Pivot/Flashlight.visible = true
+				flashlight_r.visible = true
 			if obj_id == 'axe':
-				$Pivot/Held.visible = true
-				$Pivot/Flashlight.visible = false
-				$Pivot/Held/Item.set_material_override(load("res://material/object_material.tres"))
+				$Arms/Right.visible = true
+				$Arms/Right/Item.mesh = load(Data.equip['axe'])
+				$Arms/Right/Item.set_material_override(load("res://material/object_material.tres"))
+				swap_flashlight()
 	equipped_item = obj_id
+
+
+
+func set_flashlights():
+	if aiming:
+		flashlight_h.visible = true
+	else:
+		flashlight_h.visible = false
+		flashlight_r.translation = Vector3(-0.5, -0.75, 0)
+		flashlight_l.translation = Vector3(0.5, -0.75, 0)
+
+func swap_flashlight():
+	flashlight_r.visible = !flashlight_r.visible
+	flashlight_l.visible = !flashlight_l.visible
 
 
 
 func update_quality():
 	camera.far = Data.settings['render_distance']
-	flashlight.shadow_enabled = Data.bells_and_whistles
+	flashlight_r.shadow_enabled = Data.bells_and_whistles
+	flashlight_l.shadow_enabled = Data.bells_and_whistles
 
 
 func _on_Footsteps_finished():

@@ -1,9 +1,8 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scene/entity/Player.gd" type="Script" id=1]
 [ext_resource path="res://audio/effect/dirt0.wav" type="AudioStream" id=2]
 [ext_resource path="res://default_env.tres" type="Environment" id=3]
-[ext_resource path="res://mesh/axe.obj" type="ArrayMesh" id=4]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.36
@@ -54,26 +53,10 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id=4]
-resource_name = "axe"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/path = NodePath("Pivot/Held:rotation_degrees")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.4, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector3( 0, 0, 0 ), Vector3( -30.232, 6.91225e-07, 20.472 ), Vector3( 70.627, 38.268, 2.27467 ), Vector3( 0, 0, 0 ) ]
-}
-
-[sub_resource type="Animation" id=5]
 length = 0.75
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("Pivot/Flashlight:rotation_degrees")
+tracks/0/path = NodePath("Arms/Right:translation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -82,7 +65,95 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.35, 0.75 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector3( 0, -180, 0 ), Vector3( -10, -190, 0 ), Vector3( 0, -180, 0 ) ]
+"values": [ Vector3( -0.25, -0.75, 0 ), Vector3( -0.25, -0.75, -0.5 ), Vector3( -0.25, -0.75, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Arms/Left:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.35, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.25, -0.75, 0 ), Vector3( 0.25, -0.75, -0.5 ), Vector3( 0.25, -0.75, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Arms/Right:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.35, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( -10, -10, 0 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Arms/Left:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.35, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( -10, 10, 0 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Arms/Right/Item:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.75 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -90, -180, 0 ), Vector3( -90, -180, 0 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Arms/Left/Item:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.75 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -90, -180, 0 ), Vector3( -90, -180, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "axe"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Arms/Right:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( -30, 0, 20 ), Vector3( 70.5, 38.25, 2.275 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Arms/Right/Item:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -180, 0 ), Vector3( 0, -180, 0 ) ]
 }
 
 [node name="Player" type="KinematicBody"]
@@ -101,8 +172,8 @@ transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, 0, 0
 enabled = true
 cast_to = Vector3( 0, 0, 2.5 )
 
-[node name="Flashlight" type="SpotLight" parent="Pivot"]
-transform = Transform( -1, 0, 8.74227e-08, 0, 0.999999, 0, -8.74228e-08, 0, -0.999999, -0.5, -0.75, 0 )
+[node name="Flashlight" type="SpotLight" parent="Pivot/Camera"]
+transform = Transform( 1, 0, 2.38418e-07, 0, 1, 0, -2.38418e-07, 0, 1, 0, 0, 0 )
 visible = false
 layers = 3
 light_energy = 6.66
@@ -115,14 +186,48 @@ spot_attenuation = 1.1487
 spot_angle = 11.8
 spot_angle_attenuation = 1.03526
 
-[node name="Held" type="Spatial" parent="Pivot"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, -0.75, 0.55 )
-visible = false
+[node name="Arms" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
 
-[node name="Item" type="MeshInstance" parent="Pivot/Held"]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
-mesh = ExtResource( 4 )
-material/0 = null
+[node name="Right" type="Spatial" parent="Arms"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, -0.75, 0 )
+
+[node name="Item" type="MeshInstance" parent="Arms/Right"]
+transform = Transform( -1, -8.74228e-08, -3.82137e-15, 0, -4.37114e-08, 1, -8.74228e-08, 1, 4.37114e-08, 0, 0, 0 )
+
+[node name="Flashlight" type="SpotLight" parent="Arms/Right"]
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.25, 0, -0.55 )
+visible = false
+layers = 3
+light_energy = 6.66
+light_specular = 0.56
+shadow_enabled = true
+shadow_bias = 0.0
+shadow_reverse_cull_face = true
+spot_range = 14.0
+spot_attenuation = 1.1487
+spot_angle = 11.8
+spot_angle_attenuation = 1.03526
+
+[node name="Left" type="Spatial" parent="Arms"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, -0.75, 0 )
+
+[node name="Item" type="MeshInstance" parent="Arms/Left"]
+transform = Transform( -1, -8.74228e-08, -3.82137e-15, 0, -4.37114e-08, 1, -8.74228e-08, 1, 4.37114e-08, 0, 0, 0 )
+
+[node name="Flashlight" type="SpotLight" parent="Arms/Left"]
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.25, 0, -0.55 )
+visible = false
+layers = 3
+light_energy = 6.66
+light_specular = 0.56
+shadow_enabled = true
+shadow_bias = 0.0
+shadow_reverse_cull_face = true
+spot_range = 14.0
+spot_attenuation = 1.1487
+spot_angle = 11.8
+spot_angle_attenuation = 1.03526
 
 [node name="Box" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 1, 0 )
@@ -136,7 +241,9 @@ anims/fall_down = SubResource( 2 )
 anims/step = SubResource( 3 )
 
 [node name="Swinging" type="AnimationPlayer" parent="."]
-anims/axe = SubResource( 4 )
-anims/step = SubResource( 5 )
+anims/step = SubResource( 4 )
+
+[node name="Equipped" type="AnimationPlayer" parent="."]
+anims/axe = SubResource( 5 )
 
 [connection signal="finished" from="Footsteps" to="." method="_on_Footsteps_finished"]

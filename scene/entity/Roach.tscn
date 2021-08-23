@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scene/entity/RoachBoy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scene/entity/Roach.gd" type="Script" id=3]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.01, 0.005, 0.02 )
+
+[node name="Roach" type="KinematicBody"]
+script = ExtResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.005, 0 )
+shape = SubResource( 1 )
+
+[node name="Body" parent="." instance=ExtResource( 1 )]
+
+[connection signal="animation_finished" from="Body/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+
+[editable path="Body"]
