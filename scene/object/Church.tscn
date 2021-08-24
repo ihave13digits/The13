@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://mesh/church.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://audio/effect/church_bell.wav" type="AudioStream" id=2]
+[ext_resource path="res://material/object_flat.tres" type="Material" id=3]
+[ext_resource path="res://material/object_buffed.tres" type="Material" id=4]
+[ext_resource path="res://scene/object/Church.gd" type="Script" id=5]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 3.75, 3, 5 )
+
+[node name="Church" type="StaticBody"]
+script = ExtResource( 5 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = ExtResource( 1 )
+material/0 = ExtResource( 3 )
+material/1 = ExtResource( 3 )
+material/2 = ExtResource( 3 )
+material/3 = ExtResource( 4 )
+material/4 = ExtResource( 3 )
+material/5 = ExtResource( 3 )
+
+[node name="BellSound" type="AudioStreamPlayer3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13, 0 )
+stream = ExtResource( 2 )
+unit_size = 10.0
+max_distance = 200.0
+
+[node name="BellTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="BellTimer" to="." method="_on_BellTimer_timeout"]
