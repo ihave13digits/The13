@@ -1,13 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scene/Game.gd" type="Script" id=1]
-[ext_resource path="res://scene/test.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scene/environment/World.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scene/ui/HUD.tscn" type="PackedScene" id=4]
 [ext_resource path="res://audio/effect/worm_chase.ogg" type="AudioStream" id=5]
 [ext_resource path="res://scene/object/Axe.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scene/object/Flashlight.tscn" type="PackedScene" id=7]
-[ext_resource path="res://audio/effect/church_bell.wav" type="AudioStream" id=8]
 [ext_resource path="res://scene/entity/Figure.tscn" type="PackedScene" id=10]
 
 [node name="Game" type="Node"]
@@ -18,17 +16,9 @@ stream = ExtResource( 5 )
 volume_db = -23.223
 autoplay = true
 
-[node name="ChurchBells" type="AudioStreamPlayer3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.4531, 34.5699, 1.04062 )
-stream = ExtResource( 8 )
-unit_size = 10.0
-autoplay = true
-
 [node name="HUD" parent="." instance=ExtResource( 4 )]
 
 [node name="World" parent="." instance=ExtResource( 3 )]
-
-[node name="Spatial" parent="." instance=ExtResource( 2 )]
 
 [node name="Axe" parent="." instance=ExtResource( 6 )]
 transform = Transform( 0.0982526, -0.363244, 0.926499, -0.994496, -0.00180474, 0.104756, -0.0363798, -0.931692, -0.361422, 5.93573, 1.3188, -3.49166 )
@@ -40,4 +30,5 @@ visible = false
 [node name="Flashlight" parent="." instance=ExtResource( 7 )]
 transform = Transform( -0.38531, -0.92193, -0.0397687, 0.922787, -0.384952, -0.0166054, 0, -0.0430963, 0.999071, 5.41308, 1.29777, -3.99813 )
 
-[editable path="Spatial"]
+[editable path="World"]
+[editable path="World/Church"]

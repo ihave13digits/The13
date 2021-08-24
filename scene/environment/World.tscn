@@ -1,15 +1,9 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scene/environment/World.gd" type="Script" id=1]
 [ext_resource path="res://material/grass.tres" type="Material" id=2]
-[ext_resource path="res://mesh/church.obj" type="ArrayMesh" id=3]
-[ext_resource path="res://material/object_flat.tres" type="Material" id=4]
-[ext_resource path="res://material/object_matte.tres" type="Material" id=5]
+[ext_resource path="res://scene/object/Church.tscn" type="PackedScene" id=3]
 [ext_resource path="res://mesh/horizon.obj" type="ArrayMesh" id=6]
-[ext_resource path="res://material/object_glow.tres" type="Material" id=7]
-[ext_resource path="res://material/object_soft.tres" type="Material" id=8]
-[ext_resource path="res://material/object_shiny.tres" type="Material" id=9]
-[ext_resource path="res://material/object_dusty.tres" type="Material" id=10]
 
 [sub_resource type="QuadMesh" id=1]
 material = ExtResource( 2 )
@@ -104,16 +98,6 @@ transform = Transform( 2, 0, 0, 0, 0.5, 0, 0, 0, 2, 0, 0, 0 )
 mesh = ExtResource( 6 )
 material/0 = null
 
-[node name="Church" type="MeshInstance" parent="."]
-transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 40, 0, 40 )
-mesh = ExtResource( 3 )
-material/0 = ExtResource( 8 )
-material/1 = ExtResource( 7 )
-material/2 = ExtResource( 9 )
-material/3 = ExtResource( 5 )
-material/4 = ExtResource( 10 )
-material/5 = ExtResource( 4 )
-
 [node name="HorizonAnim" type="AnimationPlayer" parent="."]
 autoplay = "grow"
 anims/grow = SubResource( 3 )
@@ -123,3 +107,6 @@ anims/shrink = SubResource( 4 )
 autoplay = "rumble"
 anims/rumble = SubResource( 5 )
 anims/strike = SubResource( 6 )
+
+[node name="Church" parent="." instance=ExtResource( 3 )]
+transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 80, 0, 80 )

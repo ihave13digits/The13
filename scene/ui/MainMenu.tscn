@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://scene/ui/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://mesh/object/hanginglight.obj" type="ArrayMesh" id=2]
@@ -17,16 +17,20 @@
 albedo_color = Color( 0.519531, 0.507355, 0.507355, 1 )
 albedo_texture = ExtResource( 5 )
 
-[sub_resource type="BoxShape" id=7]
+[sub_resource type="BoxShape" id=4]
 
-[sub_resource type="BoxShape" id=8]
-extents = Vector3( 5.91513, 3.36167, 0.161266 )
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 0.1, 1, 1 )
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="CubeMesh" id=3]
+material = ExtResource( 8 )
+size = Vector3( 0.2, 2, 2 )
+
+[sub_resource type="Animation" id=6]
 length = 8.0
 step = 0.25
 tracks/0/type = "value"
-tracks/0/path = NodePath("LightPivot:translation")
+tracks/0/path = NodePath("Room/LightPivot:translation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -38,7 +42,7 @@ tracks/0/keys = {
 "values": [ Vector3( 0, 3, 0 ), Vector3( 0.067, 3, 0.067 ), Vector3( 0.067, 3, 0 ), Vector3( -0.067, 3, -0.067 ), Vector3( 0, 3, 0 ), Vector3( 0.056, 3, 0.056 ), Vector3( 0.056, 3, 0 ), Vector3( -0.056, 3, -0.056 ), Vector3( 0, 3, 0 ), Vector3( 0.033, 3, 0.033 ), Vector3( 0.033, 3, 0 ), Vector3( -0.033, 3, -0.033 ), Vector3( 0, 3, 0 ), Vector3( 0.016, 3, 0.016 ), Vector3( 0.016, 3, 0 ), Vector3( -0.016, 3, -0.016 ), Vector3( 0, 3, 0 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("LightPivot:rotation_degrees")
+tracks/1/path = NodePath("Room/LightPivot:rotation_degrees")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -50,13 +54,12 @@ tracks/1/keys = {
 "values": [ Vector3( 0, 0, 0 ), Vector3( 6.66, 0, 6.66 ), Vector3( 2.22, 0, 6.66 ), Vector3( -2.22, 0, 6.66 ), Vector3( 0, 0, 0 ), Vector3( 5.55, 0, 5.55 ), Vector3( 1.55, 0, 5.55 ), Vector3( -1.55, 0, 5.55 ), Vector3( 0, 0, 0 ), Vector3( 3.33, 0, 3.33 ), Vector3( 1.11, 0, 3.33 ), Vector3( -1.11, 0, 3.33 ), Vector3( 0, 0, 0 ), Vector3( 1.55, 0, 1.55 ), Vector3( 0.5, 0, 1.55 ), Vector3( -0.5, 0, 1.55 ), Vector3( 0, 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "flicker"
+[sub_resource type="Animation" id=7]
 length = 8.0
 loop = true
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("LightPivot/Lamp/Light:light_energy")
+tracks/0/path = NodePath("Room/LightPivot/Lamp/Light:light_energy")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -68,27 +71,27 @@ tracks/0/keys = {
 "values": [ 16.0, 2.0, 8.0, 2.0, 14.0, 14.0, 14.0, 1.0, 7.0, 2.0, 16.0, 16.0 ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=8]
 length = 0.1
 step = 0.0166667
 tracks/0/type = "value"
-tracks/0/path = NodePath("Figure:translation")
+tracks/0/path = NodePath("Room/Figure:translation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.102 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.102 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector3( 0, 0, -5.5 ), Vector3( 0, 0, 2 ) ]
+"values": [ Vector3( -3.3, 0, -3.3 ), Vector3( 3, 0, 3 ), Vector3( 0, 0, 3 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=9]
 length = 0.1
 step = 0.0166667
 tracks/0/type = "value"
-tracks/0/path = NodePath("Figure:translation")
+tracks/0/path = NodePath("Room/Figure:translation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -97,14 +100,14 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector3( 0, 0, -5.5 ), Vector3( 0, 0, 2 ) ]
+"values": [ Vector3( -3.3, 0, -3.3 ), Vector3( 3, 0, 3 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=10]
 length = 0.1
 step = 0.0166667
 tracks/0/type = "value"
-tracks/0/path = NodePath("Figure:translation")
+tracks/0/path = NodePath("Room/Figure:translation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -113,7 +116,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector3( 0, 0, -5.5 ), Vector3( 0, 0, 2 ) ]
+"values": [ Vector3( -3.3, 0, -3.3 ), Vector3( 3, 0, 3 ) ]
 }
 
 [node name="MainMenu" type="Spatial"]
@@ -225,70 +228,45 @@ theme = ExtResource( 9 )
 text = "Exit"
 
 [node name="Room" type="MeshInstance" parent="."]
-transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 mesh = ExtResource( 4 )
 material/0 = SubResource( 1 )
-
-[node name="Axe" parent="Room" instance=ExtResource( 6 )]
-transform = Transform( 0.0274926, -0.957837, -0.285992, 0.995411, -4.35108e-08, 0.0956894, -0.0916549, -0.287311, 0.953441, 2.05344, 0.022, -1.82716 )
 
 [node name="Box" type="StaticBody" parent="Room"]
 
 [node name="Ceiling" type="CollisionShape" parent="Room/Box"]
 transform = Transform( 5, 0, 0, 0, 0.01, 0, 0, 0, 5, 0, 10, 0 )
-shape = SubResource( 7 )
+shape = SubResource( 4 )
 
 [node name="Floor" type="CollisionShape" parent="Room/Box"]
-transform = Transform( 5, 0, 0, 0, 0.1, 0, 0, 0, 5, 0, -0.1, 0 )
-shape = SubResource( 7 )
+transform = Transform( 5.1, 0, 0, 0, 0.1, 0, 0, 0, 5.1, 0, -0.1, 0 )
+shape = SubResource( 4 )
 
 [node name="Wall1" type="CollisionShape" parent="Room/Box"]
 transform = Transform( 5, 0, 0, 0, -4.37114e-09, -5, 0, 0.1, -2.18557e-07, 0, 5, 5 )
-shape = SubResource( 7 )
+shape = SubResource( 4 )
 
 [node name="Wall2" type="CollisionShape" parent="Room/Box"]
-transform = Transform( 5, 0, 0, 0, -4.37114e-09, -5, 0, 0.1, -2.18557e-07, 0, 5, -5 )
-shape = SubResource( 7 )
+transform = Transform( 5, 0, 0, 0, -4.37114e-09, -5, 0, 0.1, -2.18557e-07, 0, 5, -5.1 )
+shape = SubResource( 4 )
 
 [node name="Wall3" type="CollisionShape" parent="Room/Box"]
 transform = Transform( -2.18557e-07, -0.1, 0, 5, -4.37114e-09, 0, 0, 0, 5, 5, 5, 0 )
-shape = SubResource( 7 )
+shape = SubResource( 4 )
 
 [node name="Wall4" type="CollisionShape" parent="Room/Box"]
-transform = Transform( -2.18557e-07, -0.1, 0, 5, -4.37114e-09, 0, 0, 0, 5, -5, 5, 0 )
-shape = SubResource( 7 )
+transform = Transform( -2.18557e-07, -0.1, 0, 5, -4.37114e-09, 0, 0, 0, 5, -5.1, 5, 0 )
+shape = SubResource( 4 )
 
-[node name="Barrier1" type="CollisionShape" parent="Room/Box"]
-transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 3.90226, 0, 3.90226 )
-shape = SubResource( 8 )
+[node name="LightPivot" type="Spatial" parent="Room"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
 
-[node name="Barrier2" type="CollisionShape" parent="Room/Box"]
-transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -3.69495, 0, 3.52316 )
-shape = SubResource( 8 )
-
-[node name="Barrier3" type="CollisionShape" parent="Room/Box"]
-transform = Transform( -0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 2.7589, 0, -3.06913 )
-shape = SubResource( 8 )
-
-[node name="Barrier4" type="CollisionShape" parent="Room/Box"]
-transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -3.17747, 0, -3.41653 )
-shape = SubResource( 8 )
-
-[node name="Figure" parent="." instance=ExtResource( 7 )]
-transform = Transform( -2, 0, -1.78814e-07, 0, 2, 0, 1.78814e-07, 0, -2, 0, 0, -5.5 )
-
-[node name="Plane" parent="Figure/Armature/Skeleton" index="0"]
-material/0 = ExtResource( 8 )
-
-[node name="LightPivot" type="Spatial" parent="."]
-transform = Transform( 0.999634, -0.0270493, 0, 0.027045, 0.999474, -0.0178887, 0.000483876, 0.0178821, 0.99984, 0, 3, 0 )
-
-[node name="Lamp" type="MeshInstance" parent="LightPivot"]
+[node name="Lamp" type="MeshInstance" parent="Room/LightPivot"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 mesh = ExtResource( 2 )
 material/0 = ExtResource( 3 )
 
-[node name="Light" type="SpotLight" parent="LightPivot/Lamp"]
+[node name="Light" type="SpotLight" parent="Room/LightPivot/Lamp"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -1.3, 0 )
 light_energy = 16.0
 light_specular = 1.0
@@ -297,57 +275,99 @@ spot_range = 4.0
 spot_attenuation = 0.111226
 spot_angle_attenuation = 0.3
 
-[node name="BoxPile" type="Spatial" parent="."]
+[node name="Painting" type="StaticBody" parent="Room"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.91435, 3, 0 )
 
-[node name="Box" parent="BoxPile" instance=ExtResource( 11 )]
-transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -3, 0, -3 )
+[node name="CollisionShape" type="CollisionShape" parent="Room/Painting"]
+shape = SubResource( 2 )
 
-[node name="Box2" parent="BoxPile" instance=ExtResource( 11 )]
-transform = Transform( -0.786514, 0, 1.27726, 0, 1.5, 0, -1.27726, 0, -0.786514, -3.25929, 0.505037, -2.8223 )
+[node name="MeshInstance" type="MeshInstance" parent="Room/Painting"]
+mesh = SubResource( 3 )
+material/0 = null
 
-[node name="Box3" parent="BoxPile" instance=ExtResource( 11 )]
-transform = Transform( -0.133398, 0, 0.991062, 0, 1, 0, -0.991062, 0, -0.133398, -3.44916, 0, -2.55084 )
+[node name="Figure" parent="Room" instance=ExtResource( 7 )]
+transform = Transform( -1.41421, 0, -1.41421, 0, 2, 0, 1.41421, 0, -1.41421, -3.3, 0, -3.3 )
+
+[node name="Plane" parent="Room/Figure/Armature/Skeleton" index="0"]
+material/0 = ExtResource( 8 )
+
+[node name="BoxPile" type="Spatial" parent="Room"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.29672, 0, -2.2372 )
+
+[node name="Box" parent="Room/BoxPile" instance=ExtResource( 11 )]
+transform = Transform( 0.260555, 0, 0.965459, 0, 1, 0, -0.965459, 0, 0.260555, 0.338867, 0, -0.138596 )
+
+[node name="Box2" parent="Room/BoxPile" instance=ExtResource( 11 )]
+transform = Transform( -0.786514, 0, 1.27726, 0, 1.5, 0, -1.27726, 0, -0.786514, 0, 0.505, 0 )
+
+[node name="Box3" parent="Room/BoxPile" instance=ExtResource( 11 )]
+transform = Transform( -0.133398, 0, 0.991062, 0, 1, 0, -0.991062, 0, -0.133398, -0.395865, 0, -0.156239 )
+
+[node name="Box4" parent="Room/BoxPile" instance=ExtResource( 11 )]
+transform = Transform( -0.820221, 0, 0.572045, 0, 1, 0, -0.572045, 0, -0.820221, -0.0769589, 0, 0.411438 )
+
+[node name="Axe" parent="Room" instance=ExtResource( 6 )]
+transform = Transform( 0.0274926, -0.957837, -0.285992, 0.995411, -4.35108e-08, 0.0956894, -0.0916549, -0.287311, 0.953441, 2.05344, 0.022, -1.82716 )
+
+[node name="Critters" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="Roach1" parent="Critters" instance=ExtResource( 12 )]
+transform = Transform( 4.70936e-08, 1, 1.10693e-07, -0.773143, -3.37952e-08, 0.634231, 0.634231, -1.1545e-07, 0.773143, -5, 7.06978, 1.97761 )
+
+[node name="Roach2" parent="Critters" instance=ExtResource( 12 )]
+transform = Transform( -0.778955, -4.14487e-08, 0.62708, 0.62708, -2.74105e-08, 0.778955, -1.50981e-08, 1, 4.73432e-08, 0, 9.21663, -5 )
+
+[node name="Roach3" parent="Critters" instance=ExtResource( 12 )]
+transform = Transform( 0.988767, 0, -0.149466, 0, 1, 0, 0.149466, 0, 0.988767, 0, 0, 3.53397 )
+
+[node name="Roach4" parent="Critters" instance=ExtResource( 12 )]
+transform = Transform( -4.54122e-08, 1, 6.52147e-09, -0.967634, -4.22966e-08, -0.252356, -0.252356, -1.77704e-08, 0.967634, -5, 1.13932, 2.8552 )
+
+[node name="Roach5" parent="Critters" instance=ExtResource( 12 )]
+transform = Transform( -0.666415, -4.6368e-08, 0.745581, 0.745581, -3.25904e-08, 0.666415, -6.60157e-09, 1, 5.62898e-08, 2.48193, 8.64581, -5 )
+
+[node name="Roach6" parent="Critters" instance=ExtResource( 12 )]
+transform = Transform( 0.142232, 0, 0.989833, 0, 1, 0, -0.989833, 0, 0.142232, 2.96174, 0, 0 )
+
+[node name="Roach7" parent="Critters" instance=ExtResource( 12 )]
+transform = Transform( 1.71707e-07, 1, -8.0105e-08, 0.530511, -2.31894e-08, 0.847678, 0.847678, -1.88049e-07, -0.530511, -5, 7.52367, -3.50084 )
+
+[node name="Roach8" parent="Critters" instance=ExtResource( 12 )]
+transform = Transform( 0.797437, -8.85433e-09, -0.603403, -0.603403, -2.63756e-08, -0.797437, -8.85433e-09, 1, -2.63756e-08, -4.46768, 0.314943, -5 )
+
+[node name="Roach9" parent="Critters" instance=ExtResource( 12 )]
+transform = Transform( 0.130215, 0, -0.991486, 0, 1, 0, 0.991486, 0, 0.130215, -2.79182, 0, 0 )
+
+[node name="Roach10" parent="Critters" instance=ExtResource( 12 )]
+transform = Transform( -4.37114e-08, 1, 0, 4.37114e-08, 1.91069e-15, -1, -1, -4.37114e-08, -4.37114e-08, -5, 0.380891, -2.53851 )
+
+[node name="Roach11" parent="Critters" instance=ExtResource( 12 )]
+transform = Transform( 0.258195, -8.6784e-08, 0.966093, 0.966093, -4.22293e-08, -0.258195, 6.32046e-08, 1, 7.2938e-08, 4.20339, 0.427132, -5 )
+
+[node name="Roach12" parent="Critters" instance=ExtResource( 12 )]
+transform = Transform( -0.996008, 0, -0.0892593, 0, 1, 0, 0.0892593, 0, -0.996008, 0, 0, -2.54669 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.92388, 0.382683, 0, -0.382683, 0.92388, 0, 2.75, 2 )
+transform = Transform( 0.707107, -0.270598, 0.653282, 0, 0.92388, 0.382684, -0.707107, -0.270598, 0.653282, 2, 2.75, 2 )
 
 [node name="LightmotionAnim" type="AnimationPlayer" parent="."]
 autoplay = "swing"
-anims/swing = SubResource( 2 )
+anims/swing = SubResource( 6 )
 
 [node name="LightAnim" type="AnimationPlayer" parent="."]
 autoplay = "flicker"
-anims/flicker = SubResource( 3 )
+anims/flicker = SubResource( 7 )
 
 [node name="ClickAnim" type="AnimationPlayer" parent="."]
-anims/exit = SubResource( 4 )
-anims/settings = SubResource( 5 )
-anims/start = SubResource( 6 )
+anims/exit = SubResource( 8 )
+anims/settings = SubResource( 9 )
+anims/start = SubResource( 10 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 10 )
 volume_db = -8.078
 autoplay = true
-
-[node name="Critters" type="Spatial" parent="."]
-
-[node name="Roach" parent="Critters" instance=ExtResource( 12 )]
-transform = Transform( -0.655242, 0, -0.755419, 0, 1, 0, 0.755419, 0, -0.655242, -3.10976, 0, -2.53797 )
-
-[node name="Roach2" parent="Critters" instance=ExtResource( 12 )]
-transform = Transform( -0.558753, 0, 1.92036, 0, 2, 0, -1.92036, 0, -0.558753, 3.77657, 0, -1.53322 )
-
-[node name="Roach3" parent="Critters" instance=ExtResource( 12 )]
-transform = Transform( -2.65374, 0, -1.39916, 0, 3, 0, 1.39916, 0, -2.65374, -1.09582, 0, -3.80898 )
-
-[node name="Roach4" parent="Critters" instance=ExtResource( 12 )]
-transform = Transform( 3.98254, 0, 0.373375, 0, 4, 0, -0.373375, 0, 3.98254, 0, 0, 4.82665 )
-
-[node name="Roach5" parent="Critters" instance=ExtResource( 12 )]
-transform = Transform( -0.241983, 0, -4.99414, 0, 5, 0, 4.99414, 0, -0.241983, -4.07427, 0, 0 )
-
-[node name="Roach6" parent="Critters" instance=ExtResource( 12 )]
-transform = Transform( 4.53457, 0, -3.92908, 0, 6, 0, 3.92908, 0, 4.53457, -3.03738, 0, 3.50546 )
 
 [connection signal="mouse_entered" from="UI/Top/InteractLight" to="." method="_on_InteractLight_mouse_entered"]
 [connection signal="button_up" from="UI/Bottom/Play" to="." method="_on_Play_button_up"]
@@ -355,4 +375,4 @@ transform = Transform( 4.53457, 0, -3.92908, 0, 6, 0, 3.92908, 0, 4.53457, -3.03
 [connection signal="button_up" from="UI/Bottom/Exit" to="." method="_on_Exit_button_up"]
 [connection signal="animation_finished" from="ClickAnim" to="." method="_on_ClickAnim_animation_finished"]
 
-[editable path="Figure"]
+[editable path="Room/Figure"]

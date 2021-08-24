@@ -36,6 +36,7 @@ var object = {
 	'grass1' : preload("res://scene/environment/Grass1.tscn"),
 	'grass2' : preload("res://scene/environment/Grass2.tscn"),
 	'grass3' : preload("res://scene/environment/Grass3.tscn"),
+	'fog' : preload("res://scene/environment/Fog.tscn"),
 	}
 
 var mob = {

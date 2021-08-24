@@ -7,6 +7,7 @@
 extents = Vector3( 0.01, 0.005, 0.02 )
 
 [node name="Roach" type="KinematicBody"]
+collision_layer = 2
 script = ExtResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
