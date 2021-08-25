@@ -18,40 +18,54 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.005, -0.02 )
 enabled = true
 exclude_parent = false
 cast_to = Vector3( 0, -0.05, 0 )
+collision_mask = 3
 
 [node name="Forward" type="RayCast" parent="Head" index="1"]
 enabled = true
+exclude_parent = false
 cast_to = Vector3( 0, 0, -0.025 )
 collision_mask = 3
 
 [node name="Right" type="RayCast" parent="Head" index="2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.02 )
 enabled = true
-cast_to = Vector3( 0.025, 0, 0 )
+exclude_parent = false
+cast_to = Vector3( 0.1, 0, 0 )
 collision_mask = 3
 
 [node name="Left" type="RayCast" parent="Head" index="3"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.02 )
 enabled = true
-cast_to = Vector3( -0.025, 0, 0 )
+exclude_parent = false
+cast_to = Vector3( -0.1, 0, 0 )
 collision_mask = 3
 
 [node name="SeekRight" type="RayCast" parent="Head" index="4"]
-cast_to = Vector3( 0.015, 0, -0.025 )
+enabled = true
+exclude_parent = false
+cast_to = Vector3( 0.05, 0, -0.1 )
+collision_mask = 3
 
 [node name="SeekLeft" type="RayCast" parent="Head" index="5"]
-cast_to = Vector3( -0.015, 0, -0.025 )
+enabled = true
+exclude_parent = false
+cast_to = Vector3( -0.05, 0, -0.1 )
+collision_mask = 3
 
 [node name="EvadeRight" type="RayCast" parent="Head" index="6"]
 enabled = true
+exclude_parent = false
 cast_to = Vector3( 0.05, 0, 0.1 )
 collision_mask = 3
 
 [node name="EvadeLeft" type="RayCast" parent="Head" index="7"]
 enabled = true
+exclude_parent = false
 cast_to = Vector3( -0.05, 0, 0.1 )
 collision_mask = 3
 
 [node name="EvadeBack" type="RayCast" parent="Head" index="8"]
+enabled = true
+exclude_parent = false
 cast_to = Vector3( 0, 0, 0.5 )
 collision_mask = 3
