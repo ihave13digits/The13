@@ -43,6 +43,7 @@ var mob = {
 	'player' : preload("res://scene/entity/Player.tscn"),
 	'figure' : preload("res://scene/entity/Figure.tscn"),
 	'worm' : preload("res://scene/entity/Worm.tscn"),
+	'roach' : preload("res://scene/entity/Roach.tscn"),
 	}
 
 
