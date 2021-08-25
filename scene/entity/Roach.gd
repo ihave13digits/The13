@@ -9,7 +9,7 @@ var state = 0
 onready var anim = $Body/AnimationPlayer
 
 func _ready():
-	speed = 10-scale.z
+	speed = 10+scale.z
 	set_state(0, 1.25)
 
 
@@ -33,89 +33,31 @@ func _process(delta):
 			if backward != null:
 				motion = get_transform().basis.z.normalized() * (-speed * delta)
 				set_state(1, 3.75)
-		else:
-			set_state(0, 1.25)
+			else:
+				set_state(0, 1.25)
 		vel = move_and_slide(motion)
 	else:
-		if forward == null:
+		if forward != null:
 			if front_right != null:
 				set_state(1, 1.25)
 				rotate_object_local(Vector3(0,1,0), turn_speed*0.5 * delta)
 			elif front_left != null:
 				set_state(1, 1.25)
 				rotate_object_local(Vector3(0,1,0), -turn_speed*0.5 * delta)
-			if right != null:
+			elif right != null:
 				set_state(1, 1.25)
 				rotate_object_local(Vector3(0,1,0), turn_speed*0.5 * delta)
 			elif left != null:
 				set_state(1, 1.25)
 				rotate_object_local(Vector3(0,1,0), -turn_speed*0.5 * delta)
-			if back_right != null:
+			elif back_right != null:
 				set_state(1, 1.25)
 				rotate_object_local(Vector3(0,1,0), turn_speed*0.5 * delta)
 			elif back_left != null:
 				set_state(1, 1.25)
 				rotate_object_local(Vector3(0,1,0), -turn_speed*0.5 * delta)
-		else:
-			set_state(0, 3.75)
-
-#	if grabbing != null:
-#		if forward == null:
-#			if backward != null:
-#				set_state(1, 2.5)
-#				motion = get_transform().basis.z.normalized() * (-speed * delta)
-#			elif backward == null:
-#				set_state(1, 3.75)
-#				motion = get_transform().basis.z.normalized() * (-speed*1.5 * delta)
-#
-#			elif right != null || seek_right != null || evade_left != null:
-#				set_state(1, 1.25)
-#				rotate_object_local(Vector3(0,1,0), turn_speed*0.5 * delta)
-#				motion = get_transform().basis.z.normalized() * (speed*0.5 * delta)
-#			elif left != null || seek_left != null || evade_right != null:
-#				set_state(1, 1.25)
-#				rotate_object_local(Vector3(0,1,0), -turn_speed*0.5 * delta)
-#				motion = get_transform().basis.z.normalized() * (speed*0.5 * delta)
-#			else:
-#				set_state(0, 2.5)
-#
-#		elif forward != null:
-#			if backward == null:
-#				set_state(1, 1.25)
-#				motion = get_transform().basis.z.normalized() * (speed*0.5 * delta)
-#			elif backward != null:
-#				set_state(1, 2.5)
-#				motion = get_transform().basis.z.normalized() * (speed * delta)
-#
-#			elif right != null || seek_right != null || evade_left != null:
-#				set_state(1, 2.5)
-#				rotate_object_local(Vector3(0,1,0), turn_speed*0.5 * delta)
-#				motion = get_transform().basis.z.normalized() * (-speed*0.5 * delta)
-#			elif left != null || seek_left != null || evade_right != null:
-#				set_state(1, 2.5)
-#				rotate_object_local(Vector3(0,1,0), -turn_speed*0.5 * delta)
-#				motion = get_transform().basis.z.normalized() * (-speed*0.5 * delta)
-#			else:
-#				set_state(0, 3.75)
-#		vel = move_and_slide(motion)
-#
-#	elif grabbing == null:
-#		motion = get_transform().basis.y.normalized() * (gravity * delta)
-#		vel = move_and_slide(motion)
-#		if right != null:
-#			set_state(1, 1.25)
-#			rotate_object_local(Vector3(0,1,0), turn_speed*0.5 * delta)
-#		elif left != null:
-#			set_state(1, 1.25)
-#			rotate_object_local(Vector3(0,1,0), -turn_speed*0.5 * delta)
-#		elif seek_right != null || evade_left != null:
-#			set_state(1, 2.5)
-#			rotate_object_local(Vector3(0,1,0), turn_speed * delta)
-#		elif seek_left != null || evade_right != null:
-#			set_state(1, 2.5)
-#			rotate_object_local(Vector3(0,1,0), -turn_speed * delta)
-#		else:
-#				set_state(0, 1.25)
+			else:
+				set_state(0, 1.25)
 
 
 

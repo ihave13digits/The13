@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://scene/ui/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://mesh/object/hanginglight.obj" type="ArrayMesh" id=2]
@@ -12,21 +12,22 @@
 [ext_resource path="res://audio/music/mainmenu.ogg" type="AudioStream" id=10]
 [ext_resource path="res://scene/object/Box.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scene/entity/Roach.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scene/object/Chair.tscn" type="PackedScene" id=13]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0.519531, 0.507355, 0.507355, 1 )
 albedo_texture = ExtResource( 5 )
 
-[sub_resource type="BoxShape" id=4]
-
 [sub_resource type="BoxShape" id=2]
+
+[sub_resource type="BoxShape" id=3]
 extents = Vector3( 0.1, 1, 1 )
 
-[sub_resource type="CubeMesh" id=3]
+[sub_resource type="CubeMesh" id=4]
 material = ExtResource( 8 )
 size = Vector3( 0.2, 2, 2 )
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=5]
 length = 8.0
 step = 0.25
 tracks/0/type = "value"
@@ -54,7 +55,7 @@ tracks/1/keys = {
 "values": [ Vector3( 0, 0, 0 ), Vector3( 6.66, 0, 6.66 ), Vector3( 2.22, 0, 6.66 ), Vector3( -2.22, 0, 6.66 ), Vector3( 0, 0, 0 ), Vector3( 5.55, 0, 5.55 ), Vector3( 1.55, 0, 5.55 ), Vector3( -1.55, 0, 5.55 ), Vector3( 0, 0, 0 ), Vector3( 3.33, 0, 3.33 ), Vector3( 1.11, 0, 3.33 ), Vector3( -1.11, 0, 3.33 ), Vector3( 0, 0, 0 ), Vector3( 1.55, 0, 1.55 ), Vector3( 0.5, 0, 1.55 ), Vector3( -0.5, 0, 1.55 ), Vector3( 0, 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=6]
 length = 8.0
 loop = true
 step = 0.05
@@ -71,7 +72,7 @@ tracks/0/keys = {
 "values": [ 16.0, 2.0, 8.0, 2.0, 14.0, 14.0, 14.0, 1.0, 7.0, 2.0, 16.0, 16.0 ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=7]
 length = 0.1
 step = 0.0166667
 tracks/0/type = "value"
@@ -87,7 +88,7 @@ tracks/0/keys = {
 "values": [ Vector3( -3.3, 0, -3.3 ), Vector3( 3, 0, 3 ), Vector3( 0, 0, 3 ) ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=8]
 length = 0.1
 step = 0.0166667
 tracks/0/type = "value"
@@ -103,7 +104,7 @@ tracks/0/keys = {
 "values": [ Vector3( -3.3, 0, -3.3 ), Vector3( 3, 0, 3 ) ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=9]
 length = 0.1
 step = 0.0166667
 tracks/0/type = "value"
@@ -228,7 +229,6 @@ theme = ExtResource( 9 )
 text = "Exit"
 
 [node name="Room" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 mesh = ExtResource( 4 )
 material/0 = SubResource( 1 )
 
@@ -236,33 +236,32 @@ material/0 = SubResource( 1 )
 
 [node name="Ceiling" type="CollisionShape" parent="Room/Box"]
 transform = Transform( 5, 0, 0, 0, 0.01, 0, 0, 0, 5, 0, 10, 0 )
-shape = SubResource( 4 )
+shape = SubResource( 2 )
 
 [node name="Floor" type="CollisionShape" parent="Room/Box"]
 transform = Transform( 5.1, 0, 0, 0, 0.1, 0, 0, 0, 5.1, 0, -0.1, 0 )
-shape = SubResource( 4 )
+shape = SubResource( 2 )
 
 [node name="Wall1" type="CollisionShape" parent="Room/Box"]
 transform = Transform( 5, 0, 0, 0, -4.37114e-09, -5, 0, 0.1, -2.18557e-07, 0, 5, 5 )
-shape = SubResource( 4 )
+shape = SubResource( 2 )
 
 [node name="Wall2" type="CollisionShape" parent="Room/Box"]
 transform = Transform( 5, 0, 0, 0, -4.37114e-09, -5, 0, 0.1, -2.18557e-07, 0, 5, -5.1 )
-shape = SubResource( 4 )
+shape = SubResource( 2 )
 
 [node name="Wall3" type="CollisionShape" parent="Room/Box"]
 transform = Transform( -2.18557e-07, -0.1, 0, 5, -4.37114e-09, 0, 0, 0, 5, 5, 5, 0 )
-shape = SubResource( 4 )
+shape = SubResource( 2 )
 
 [node name="Wall4" type="CollisionShape" parent="Room/Box"]
 transform = Transform( -2.18557e-07, -0.1, 0, 5, -4.37114e-09, 0, 0, 0, 5, -5.1, 5, 0 )
-shape = SubResource( 4 )
+shape = SubResource( 2 )
 
 [node name="LightPivot" type="Spatial" parent="Room"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0 )
 
 [node name="Lamp" type="MeshInstance" parent="Room/LightPivot"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 mesh = ExtResource( 2 )
 material/0 = ExtResource( 3 )
 
@@ -279,14 +278,14 @@ spot_angle_attenuation = 0.3
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.91435, 3, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Room/Painting"]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Room/Painting"]
-mesh = SubResource( 3 )
+mesh = SubResource( 4 )
 material/0 = null
 
 [node name="Figure" parent="Room" instance=ExtResource( 7 )]
-transform = Transform( -1.41421, 0, -1.41421, 0, 2, 0, 1.41421, 0, -1.41421, -3.3, 0, -3.3 )
+transform = Transform( -1.41421, 0, -1.41421, 0, 2, 0, 1.41421, 0, -1.41421, -3.33, 0, -3.33 )
 
 [node name="Plane" parent="Room/Figure/Armature/Skeleton" index="0"]
 material/0 = ExtResource( 8 )
@@ -309,8 +308,10 @@ transform = Transform( -0.820221, 0, 0.572045, 0, 1, 0, -0.572045, 0, -0.820221,
 [node name="Axe" parent="Room" instance=ExtResource( 6 )]
 transform = Transform( 0.0274926, -0.957837, -0.285992, 0.995411, -4.35108e-08, 0.0956894, -0.0916549, -0.287311, 0.953441, 2.05344, 0.022, -1.82716 )
 
+[node name="Chair" parent="Room" instance=ExtResource( 13 )]
+transform = Transform( 0.639426, 0, -0.768853, 0, 1, 0, 0.768853, 0, 0.639426, -4, 0, 2 )
+
 [node name="Critters" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 
 [node name="Roach1" parent="Critters" instance=ExtResource( 12 )]
 transform = Transform( 4.70936e-08, 1, 1.10693e-07, -0.773143, -3.37952e-08, 0.634231, 0.634231, -1.1545e-07, 0.773143, -5, 7.06978, 1.97761 )
@@ -353,16 +354,16 @@ transform = Transform( 0.707107, -0.270598, 0.653282, 0, 0.92388, 0.382684, -0.7
 
 [node name="LightmotionAnim" type="AnimationPlayer" parent="."]
 autoplay = "swing"
-anims/swing = SubResource( 6 )
+anims/swing = SubResource( 5 )
 
 [node name="LightAnim" type="AnimationPlayer" parent="."]
 autoplay = "flicker"
-anims/flicker = SubResource( 7 )
+anims/flicker = SubResource( 6 )
 
 [node name="ClickAnim" type="AnimationPlayer" parent="."]
-anims/exit = SubResource( 8 )
-anims/settings = SubResource( 9 )
-anims/start = SubResource( 10 )
+anims/exit = SubResource( 7 )
+anims/settings = SubResource( 8 )
+anims/start = SubResource( 9 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 10 )

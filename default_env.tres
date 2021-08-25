@@ -39,7 +39,6 @@ tonemap_mode = 1
 tonemap_exposure = 0.6
 tonemap_white = 8.27
 ssao_radius = 43.63
-dof_blur_far_enabled = true
 dof_blur_far_transition = 0.01
 dof_blur_far_amount = 0.05
 glow_intensity = 3.91
