@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://scene/ui/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://mesh/object/hanginglight.obj" type="ArrayMesh" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://scene/object/Box.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scene/entity/Roach.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scene/object/Chair.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scene/object/Table.tscn" type="PackedScene" id=14]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0.519531, 0.507355, 0.507355, 1 )
@@ -310,6 +311,12 @@ transform = Transform( 0.0274926, -0.957837, -0.285992, 0.995411, -4.35108e-08, 
 
 [node name="Chair" parent="Room" instance=ExtResource( 13 )]
 transform = Transform( 0.639426, 0, -0.768853, 0, 1, 0, 0.768853, 0, 0.639426, -4, 0, 2 )
+
+[node name="Chair2" parent="Room" instance=ExtResource( 13 )]
+transform = Transform( 0.809407, 0, 0.587249, 0, 1, 0, -0.587249, 0, 0.809407, -3.42407, 0, -1.06723 )
+
+[node name="Table" parent="Room" instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.18283, 0, 0.280645 )
 
 [node name="Critters" type="Spatial" parent="."]
 
