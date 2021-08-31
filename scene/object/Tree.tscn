@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scene/object/InteractiveObject.tscn" type="PackedScene" id=1]
+[ext_resource path="res://material/wood.tres" type="Material" id=2]
+[ext_resource path="res://scene/object/Tree.gd" type="Script" id=3]
+[ext_resource path="res://mesh/object/tree.obj" type="ArrayMesh" id=4]
+
+[node name="Tree" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+object_id = "tree"
+details = "It's a tree."
+
+[node name="MeshInstance" type="MeshInstance" parent="." index="0"]
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="." index="1"]
