@@ -4,6 +4,7 @@ extends Node
 var env
 
 var bells_and_whistles = true
+var shadows_enabled = true
 
 var settings = {
 	'render_distance' : 400,
@@ -56,3 +57,4 @@ func _ready():
 	
 	env.environment.dof_blur_far_enabled = bool(threads > 4)
 	bells_and_whistles = bool(threads > 8)
+	shadows_enabled = bool(threads > 4)

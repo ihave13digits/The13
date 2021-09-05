@@ -207,10 +207,12 @@ func swap_flashlight():
 
 func update_quality():
 	camera.far = Data.settings['render_distance']
-	flashlight_r.shadow_enabled = Data.bells_and_whistles
-	flashlight_l.shadow_enabled = Data.bells_and_whistles
+	$Pivot/Camera/Flashlight.shadow_enabled = Data.shadows_enabled
+	flashlight_r.shadow_enabled = Data.shadows_enabled
+	flashlight_l.shadow_enabled = Data.shadows_enabled
 
 
 func _on_Footsteps_finished():
+	print(translation)
 	var index = randi() % 3
 	$Footsteps.stream = Data.footstep['dirt'][index]

@@ -40,6 +40,10 @@ func _on_TogglePostProcessing_button_up():
 	Data.env.environment.adjustment_enabled = $Center/TogglePostProcessing.pressed
 	$Center/RenderingDistance.visible = $Center/TogglePostProcessing.pressed
 
+func _on_ToggleShadows_button_up():
+	Data.shadows_enabled = $Center/ToggleShadows.pressed
+	emit_signal("update_quality")
+
 func _on_ToggleBellsAndWhistles_button_up():
 	Data.bells_and_whistles = $Center/ToggleBellsAndWhistles.pressed
 	$Center/DetailLevel.visible = $Center/ToggleBellsAndWhistles.pressed

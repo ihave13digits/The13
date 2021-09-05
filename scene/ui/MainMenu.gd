@@ -16,7 +16,7 @@ func play_click_anim(anim_name):
 	$ClickAnim.play(anim_name)
 
 func update_quality():
-	$Room/LightPivot/Lamp/Light.shadow_enabled = Data.bells_and_whistles
+	$Room/LightPivot/Lamp/Light.shadow_enabled = Data.shadows_enabled
 	if Data.bells_and_whistles:
 		$Room.get_surface_material(0).albedo_texture = load("res://image/env/menu_room_texture1024.png")
 	else:

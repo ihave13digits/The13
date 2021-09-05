@@ -1,0 +1,24 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scene/object/InteractiveObject.tscn" type="PackedScene" id=1]
+[ext_resource path="res://material/wood.tres" type="Material" id=2]
+[ext_resource path="res://material/grass.tres" type="Material" id=3]
+[ext_resource path="res://mesh/object/tree_full.obj" type="ArrayMesh" id=4]
+[ext_resource path="res://scene/object/TreeFull.gd" type="Script" id=5]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.262969, 4.11598, 0.248177 )
+
+[node name="TreeFull" instance=ExtResource( 1 )]
+script = ExtResource( 5 )
+object_id = "tree_full"
+details = "It's a healthy tree."
+
+[node name="MeshInstance" type="MeshInstance" parent="." index="0"]
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 3 )
+material/1 = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="." index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0152507, 4.13109, -0.0304794 )
+shape = SubResource( 1 )

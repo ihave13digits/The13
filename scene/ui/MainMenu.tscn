@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://scene/ui/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://mesh/object/hanginglight.obj" type="ArrayMesh" id=2]
@@ -14,6 +14,8 @@
 [ext_resource path="res://scene/entity/Roach.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scene/object/Chair.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scene/object/Table.tscn" type="PackedScene" id=14]
+[ext_resource path="res://mesh/object/lightbulb.obj" type="ArrayMesh" id=15]
+[ext_resource path="res://material/object_transparent.tres" type="Material" id=16]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0.519531, 0.507355, 0.507355, 1 )
@@ -274,6 +276,11 @@ shadow_enabled = true
 spot_range = 4.0
 spot_attenuation = 0.111226
 spot_angle_attenuation = 0.3
+
+[node name="Bulb" type="MeshInstance" parent="Room/LightPivot/Lamp"]
+transform = Transform( 1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, -1.1, 0 )
+mesh = ExtResource( 15 )
+material/0 = ExtResource( 16 )
 
 [node name="Painting" type="StaticBody" parent="Room"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.91435, 3, 0 )
