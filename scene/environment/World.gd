@@ -19,6 +19,7 @@ func _ready():
 	update_quality()
 
 func update_quality():
+	$Sun.shadow_enabled = Data.shadows_enabled
 	if Data.bells_and_whistles == false:
 		if is_instance_valid(grass1):
 			remove_child(grass1)

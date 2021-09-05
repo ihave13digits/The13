@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scene/object/InteractiveObject.tscn" type="PackedScene" id=1]
+[ext_resource path="res://mesh/object/lightbulb.obj" type="ArrayMesh" id=2]
+
+[node name="Lightbulb" instance=ExtResource( 1 )]
+script = null
+
+[node name="MeshInstance" type="MeshInstance" parent="." index="0"]
+mesh = ExtResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="." index="1"]

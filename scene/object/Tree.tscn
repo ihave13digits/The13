@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scene/object/InteractiveObject.tscn" type="PackedScene" id=1]
 [ext_resource path="res://material/wood.tres" type="Material" id=2]
 [ext_resource path="res://scene/object/Tree.gd" type="Script" id=3]
 [ext_resource path="res://mesh/object/tree.obj" type="ArrayMesh" id=4]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.255483, 4.11128, 0.218359 )
 
 [node name="Tree" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
@@ -15,3 +18,5 @@ mesh = ExtResource( 4 )
 material/0 = ExtResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="." index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.90303, 0 )
+shape = SubResource( 1 )

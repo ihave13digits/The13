@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/tree_patchy.obj-8a199b6b7f4b8479db13309ff20ed6ea.mesh"
+
+[deps]
+
+files=[ "res://.import/tree_patchy.obj-8a199b6b7f4b8479db13309ff20ed6ea.mesh" ]
+
+source_file="res://mesh/object/tree_patchy.obj"
+dest_files=[ "res://.import/tree_patchy.obj-8a199b6b7f4b8479db13309ff20ed6ea.mesh", "res://.import/tree_patchy.obj-8a199b6b7f4b8479db13309ff20ed6ea.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
