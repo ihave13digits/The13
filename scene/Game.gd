@@ -13,6 +13,7 @@ onready var figure = $Figure
 
 func _ready():
 	player = Data.mob['player'].instance()
+	player.translation = Vector3(0, 150, 0)
 	add_child(player)
 	player.connect('update_cursor', self, 'update_cursor')
 	player.connect('triggered_event', self, 'spawn')

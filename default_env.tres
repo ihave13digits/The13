@@ -23,7 +23,6 @@ background_energy = 3.9
 ambient_light_color = Color( 1, 1, 1, 1 )
 ambient_light_energy = 3.39
 ambient_light_sky_contribution = 0.71
-fog_enabled = true
 fog_color = Color( 0.411765, 0.419608, 0.435294, 1 )
 fog_sun_color = Color( 0.854902, 0.854902, 0.854902, 1 )
 fog_sun_amount = 0.37

@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://image/env/fog.png" type="Texture" id=1]
+[ext_resource path="res://image/env/fog_32.png" type="Texture" id=1]
 [ext_resource path="res://scene/environment/Fog.gd" type="Script" id=2]
 
 [sub_resource type="SpatialMaterial" id=1]
@@ -15,7 +15,7 @@ albedo_texture = ExtResource( 1 )
 
 [sub_resource type="Gradient" id=2]
 offsets = PoolRealArray( 0.138889, 0.490741, 0.861111 )
-colors = PoolColorArray( 0, 0, 0, 0, 0.501961, 0.501961, 0.501961, 0.12549, 0, 0, 0, 0 )
+colors = PoolColorArray( 0, 0, 0, 0, 0.313726, 0.313726, 0.317647, 0.501961, 0, 0, 0, 0 )
 
 [sub_resource type="GradientTexture" id=3]
 gradient = SubResource( 2 )

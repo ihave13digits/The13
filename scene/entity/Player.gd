@@ -9,7 +9,7 @@ var gravity = Vector3.DOWN * 0.5  # strength of gravity
 var player_height = 1.8 # about 5'10"
 
 var speed = 400 # movement speed
-var run_speed = 600 # running speed
+var run_speed = 900 # running speed
 var jump_speed = 400000000  # jump strength
 var spin = 0.1  # rotation speed
 var pan_speed = 24.0
@@ -22,6 +22,7 @@ var velocity = Vector3.ZERO
 var distance_tick = 0.0
 var step_size = 0.75
 var steps_taken = 0
+var standing_on = 'dirt'
 
 var jump = false
 var aiming = false
@@ -87,7 +88,6 @@ func _physics_process(delta):
 		if Input.is_action_just_released("aim_flashlight"):
 			aiming = false
 			set_flashlights()
-			
 
 		if can_walk:
 			if Input.is_action_pressed("move_forward"):
@@ -123,7 +123,12 @@ func _physics_process(delta):
 			if !aiming:
 				$Swinging.play("step")
 
-		var motion = vel.normalized() * (speed * delta)
+		
+		var motion
+		if Input.is_action_pressed("run"):
+			motion = vel.normalized() * (run_speed * delta)
+		else:
+			motion = vel.normalized() * (speed * delta)
 		motion = move_and_slide(motion, Vector3.UP, false, 4, 0.78, true)
 
 func _input(event):
@@ -213,6 +218,5 @@ func update_quality():
 
 
 func _on_Footsteps_finished():
-	print(translation)
 	var index = randi() % 3
-	$Footsteps.stream = Data.footstep['dirt'][index]
+	$Footsteps.stream = Data.footstep[standing_on][index]

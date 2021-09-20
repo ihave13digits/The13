@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/swuing_thunder.wav-97f8baa0896fe75e0b9ea49c83397a2c.sample"
+
+[deps]
+
+source_file="res://audio/effect/swuing_thunder.wav"
+dest_files=[ "res://.import/swuing_thunder.wav-97f8baa0896fe75e0b9ea49c83397a2c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
