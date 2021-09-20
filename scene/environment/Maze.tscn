@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://material/concrete.tres" type="Material" id=1]
+
+[sub_resource type="CubeMesh" id=1]
+material = ExtResource( 1 )
+flip_faces = true
+size = Vector3( 4, 4, 4 )
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 2, 0.1, 2 )
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 2, 2, 0.1 )
+
+[sub_resource type="BoxShape" id=4]
+extents = Vector3( 2, 2, 0.1 )
+
+[sub_resource type="BoxShape" id=5]
+extents = Vector3( 0.1, 2, 2 )
+
+[sub_resource type="BoxShape" id=6]
+extents = Vector3( 0.1, 2, 2 )
+
+[node name="Maze" type="Spatial"]
+
+[node name="Room" type="StaticBody" parent="."]
+
+[node name="Mesh" type="MeshInstance" parent="Room"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="Floor" type="CollisionShape" parent="Room"]
+shape = SubResource( 2 )
+
+[node name="North" type="CollisionShape" parent="Room"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 2 )
+shape = SubResource( 3 )
+
+[node name="South" type="CollisionShape" parent="Room"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -2 )
+shape = SubResource( 4 )
+
+[node name="East" type="CollisionShape" parent="Room"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, 0 )
+shape = SubResource( 5 )
+
+[node name="West" type="CollisionShape" parent="Room"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, 0 )
+shape = SubResource( 6 )
+
+[node name="OmniLight" type="OmniLight" parent="Room"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
+light_energy = 16.0
+omni_attenuation = 4.5

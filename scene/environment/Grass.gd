@@ -5,7 +5,7 @@ var size = 250
 
 
 func _ready():
-	$Meshes.multimesh.instance_count = Data.settings['detail_level']
+	$Meshes.multimesh.instance_count = Data.settings['detail_level']*5000
 	
 	for i in range($Meshes.multimesh.instance_count):
 		var X = (randi() % size) - float(size)/2.0 + randf()

@@ -4,6 +4,7 @@ extends Spatial
 
 func _ready():
 	update_quality()
+	Data.env.environment.fog_enabled = true
 	Data.env.environment.fog_depth_end = 8
 	Data.env.environment.fog_transmit_curve = 4.0
 	$LightmotionAnim.play("swing")
