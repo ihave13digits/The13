@@ -47,3 +47,4 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.97257, 0 )
 light_energy = 10.0
 
 [editable path="World"]
+[editable path="World/Land"]

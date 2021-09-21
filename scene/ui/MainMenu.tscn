@@ -293,7 +293,7 @@ mesh = SubResource( 4 )
 material/0 = null
 
 [node name="Figure" parent="Room" instance=ExtResource( 7 )]
-transform = Transform( -1.41421, 0, -1.41421, 0, 2, 0, 1.41421, 0, -1.41421, -3.33, 0, -3.33 )
+transform = Transform( -1.41421, 0, -1.41421, 0, 2, 0, 1.41421, 0, -1.41421, -3.3, 0, -3.3 )
 
 [node name="Plane" parent="Room/Figure/Armature/Skeleton" index="0"]
 material/0 = ExtResource( 8 )

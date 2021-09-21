@@ -4,6 +4,8 @@ signal pause_game
 signal update_cursor
 signal triggered_event
 
+var trigger_worm = 17
+
 var gravity = Vector3.DOWN * 0.5  # strength of gravity
 
 var player_height = 1.8 # about 5'10"
@@ -57,6 +59,7 @@ func _physics_process(delta):
 	if has_control:
 		var can_do = false
 		var vel = Vector3()
+		var step_anim = "step"
 		vel += gravity
 		if vel.length() > 0.01:
 			vel /= vel.length()
@@ -117,18 +120,19 @@ func _physics_process(delta):
 				_yaw -= pan_speed * spin
 				update_rotations()
 
-		if can_do:
-			update_distance(delta)
-			$Bobbing.play("step")
-			if !aiming:
-				$Swinging.play("step")
-
-		
 		var motion
 		if Input.is_action_pressed("run"):
+			step_anim = "step_fast"
 			motion = vel.normalized() * (run_speed * delta)
 		else:
 			motion = vel.normalized() * (speed * delta)
+
+		if can_do:
+			update_distance(delta)
+			$Bobbing.play(step_anim)
+			if !aiming:
+				$Swinging.play("step")
+
 		motion = move_and_slide(motion, Vector3.UP, false, 4, 0.78, true)
 
 func _input(event):
@@ -158,7 +162,7 @@ func update_distance(delta):
 	if distance_tick >= step_size:
 		distance_tick -= step_size
 		steps_taken += 1
-	if steps_taken > 17:
+	if steps_taken > trigger_worm:
 		emit_signal("triggered_event")
 
 
@@ -211,7 +215,7 @@ func swap_flashlight():
 
 
 func update_quality():
-	camera.far = Data.settings['render_distance']
+	camera.far = Data.settings['render_distance']*8190.0 + 2.0
 	$Pivot/Camera/Flashlight.shadow_enabled = Data.shadows_enabled
 	flashlight_r.shadow_enabled = Data.shadows_enabled
 	flashlight_l.shadow_enabled = Data.shadows_enabled

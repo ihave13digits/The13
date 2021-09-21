@@ -44,7 +44,7 @@ func update_quality():
 			for z in range(-5, 5):
 				var fog = Data.object['fog'].instance()
 				add_child(fog)
-				fog.translation = Vector3(x*20, 15, z*20)
-				fog.particles.amount = clamp(Data.settings['detail_level']*100, 1, 15)
+				fog.translation = Vector3(x*20, 150, z*20)
+				fog.particles.amount = Data.settings['detail_level']*9.0 + 1.0
 				fog_patches.append(fog)
 	
