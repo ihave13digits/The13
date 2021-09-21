@@ -7,6 +7,74 @@ var bells_and_whistles = true
 var shadows_enabled = true
 var data_file = "user://game_state.json"
 
+var sky_color = {
+	'early_night' : {
+		'sky' : Color(0.15, 0.00, 0.25),
+		'fog' : Color(0.40, 0.40, 0.40),
+		'base' : Color(0.20, 0.00, 0.30),
+		},
+	'night' : {
+		'sky' : Color(0.10, 0.00, 0.20),
+		'fog' : Color(0.35, 0.35, 0.35),
+		'base' : Color(0.15, 0.00, 0.25),
+		},
+	'late_night' : {
+		'sky' : Color(0.00, 0.00, 0.80),
+		'fog' : Color(0.00, 0.00, 0.00),
+		'base' : Color(1.00, 1.00, 1.00),
+		},
+	'early_morning' : {
+		'sky' : Color(0.20, 0.20, 1.00),
+		'fog' : Color(0.00, 0.00, 0.00),
+		'base' : Color(1.00, 1.00, 1.00),
+		},
+	'morning' : {
+		'sky' : Color(0.40, 0.40, 1.00),
+		'fog' : Color(0.00, 0.00, 0.00),
+		'base' : Color(1.00, 1.00, 1.00),
+		},
+	'late_morning' : {
+		'sky' : Color(0.60, 0.60, 1.00),
+		'fog' : Color(0.00, 0.00, 0.00),
+		'base' : Color(1.00, 1.00, 1.00),
+		},
+	'noon' : {
+		'sky' : Color(0.80, 0.80, 1.00),
+		'fog' : Color(0.00, 0.00, 0.00),
+		'base' : Color(1.00, 1.00, 1.00),
+		},
+	'early_afternoon' : {
+		'sky' : Color(0.60, 0.60, 1.00),
+		'fog' : Color(0.00, 0.00, 0.00),
+		'base' : Color(1.00, 1.00, 1.00),
+		},
+	'afternoon' : {
+		'sky' : Color(0.50, 0.40, 1.00),
+		'fog' : Color(0.00, 0.00, 0.00),
+		'base' : Color(1.00, 1.00, 1.00),
+		},
+	'late_afternoon' : {
+		'sky' : Color(0.40, 0.20, 1.00),
+		'fog' : Color(0.00, 0.00, 0.00),
+		'base' : Color(1.00, 1.00, 1.00),
+		},
+	'early_evening' : {
+		'sky' : Color(0.20, 0.00, 0.80),
+		'fog' : Color(0.00, 0.00, 0.00),
+		'base' : Color(1.00, 1.00, 1.00),
+		},
+	'evening' : {
+		'sky' : Color(0.10, 0.00, 0.60),
+		'fog' : Color(0.00, 0.00, 0.00),
+		'base' : Color(1.00, 1.00, 1.00),
+		},
+	'late_evening' : {
+		'sky' : Color(0.05, 0.00, 0.40),
+		'fog' : Color(0.00, 0.00, 0.00),
+		'base' : Color(1.00, 1.00, 1.00),
+		},
+}
+
 var settings = {
 	'render_distance' : 1.0,
 	'detail_level' : 1.0,
@@ -54,12 +122,21 @@ func _ready():
 	env = WorldEnvironment.new()
 	env.set_environment(load("res://default_env.tres"))
 	configure_settings()
+	update_time('night')
 
 func configure_settings():
 	var threads = OS.get_processor_count()
 	env.environment.dof_blur_far_enabled = bool(threads > 4)
 	bells_and_whistles = bool(threads > 8)
 	shadows_enabled = bool(threads > 4)
+
+func update_time(time):
+	var sky = env.environment.background_sky
+	sky.sky_top_color = sky_color[time]['sky']
+	sky.sky_horizon_color = sky_color[time]['base']
+	sky.ground_bottom_color = sky_color[time]['base']
+	sky.ground_horizon_color = sky_color[time]['base']
+	env.environment.fog_color = sky_color[time]['fog']
 
 func save_scores():
 	var data = {'trigger' : trigger}
