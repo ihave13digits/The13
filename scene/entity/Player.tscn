@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scene/entity/Player.gd" type="Script" id=1]
 [ext_resource path="res://audio/effect/dirt0.wav" type="AudioStream" id=2]
@@ -35,6 +35,35 @@ tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.325, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0.1, 0 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Footsteps:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "step_fast"
+length = 0.5
+step = 0.025
+tracks/0/type = "value"
+tracks/0/path = NodePath("Pivot/Camera:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0.1, 0 ), Vector3( 0, 0, 0 ) ]
@@ -164,7 +193,7 @@ script = ExtResource( 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0 )
 
 [node name="Camera" type="Camera" parent="Pivot"]
-transform = Transform( -1, 0, 3.25841e-07, 0, 1, 0, -3.25841e-07, 0, -1, 0, 0, 0 )
+transform = Transform( -1, 0, 3.25841e-07, 0, 1, 0, -3.25841e-07, 0, -1, 0, 0.0769231, 0 )
 environment = ExtResource( 3 )
 
 [node name="Cursor" type="RayCast" parent="Pivot/Camera"]
@@ -190,7 +219,7 @@ spot_angle_attenuation = 1.03526
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
 
 [node name="Right" type="Spatial" parent="Arms"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, -0.75, 0 )
+transform = Transform( 0.992239, 0.0154614, -0.123379, 0, 0.992239, 0.124344, 0.124344, -0.123379, 0.984539, -0.25, -0.75, -0.357143 )
 
 [node name="Item" type="MeshInstance" parent="Arms/Right"]
 transform = Transform( -1, -8.74228e-08, -3.82137e-15, 0, -4.37114e-08, 1, -8.74228e-08, 1, 4.37114e-08, 0, 0, 0 )
@@ -210,7 +239,7 @@ spot_angle = 11.8
 spot_angle_attenuation = 1.03526
 
 [node name="Left" type="Spatial" parent="Arms"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, -0.75, 0 )
+transform = Transform( 0.992239, -0.0154614, 0.123379, 0, 0.992239, 0.124344, -0.124344, -0.123379, 0.984539, 0.25, -0.75, -0.357143 )
 
 [node name="Item" type="MeshInstance" parent="Arms/Left"]
 transform = Transform( -1, -8.74228e-08, -3.82137e-15, 0, -4.37114e-08, 1, -8.74228e-08, 1, 4.37114e-08, 0, 0, 0 )
@@ -239,6 +268,7 @@ stream = ExtResource( 2 )
 [node name="Bobbing" type="AnimationPlayer" parent="."]
 anims/fall_down = SubResource( 2 )
 anims/step = SubResource( 3 )
+anims/step_fast = SubResource( 6 )
 
 [node name="Swinging" type="AnimationPlayer" parent="."]
 anims/step = SubResource( 4 )

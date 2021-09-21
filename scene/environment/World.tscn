@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scene/environment/World.gd" type="Script" id=1]
 [ext_resource path="res://scene/object/Flashlight.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://scene/environment/Land.tscn" type="PackedScene" id=8]
 [ext_resource path="res://mesh/object/lighthouse.obj" type="ArrayMesh" id=9]
 [ext_resource path="res://material/object_flat.tres" type="Material" id=10]
+[ext_resource path="res://scene/environment/Ocean.tscn" type="PackedScene" id=11]
 
 [sub_resource type="Animation" id=1]
 resource_name = "rumble"
@@ -45,6 +46,9 @@ tracks/0/keys = {
 "values": [ 1.0 ]
 }
 
+[sub_resource type="QuadMesh" id=3]
+size = Vector2( 10000, 10000 )
+
 [node name="World" type="Spatial"]
 script = ExtResource( 1 )
 
@@ -56,8 +60,16 @@ anims/strike = SubResource( 2 )
 [node name="Sun" type="DirectionalLight" parent="."]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 0, 0 )
 
+[node name="Ocean" parent="." instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0 )
+
 [node name="Land" parent="." instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Land"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
+mesh = SubResource( 3 )
+material/0 = null
 
 [node name="Church" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 123, 0 )

@@ -13,7 +13,7 @@ onready var figure = $Figure
 
 func _ready():
 	player = Data.mob['player'].instance()
-	player.translation = Vector3(0, 150, 0)
+	player.translation = Vector3(0, 125, 0)
 	add_child(player)
 	player.connect('update_cursor', self, 'update_cursor')
 	player.connect('triggered_event', self, 'spawn')
@@ -46,6 +46,7 @@ func spawn(m='worm'):
 				Data.trigger['worm'] = true
 				var i = Data.mob[m].instance()
 				i.translation = player.translation
+				print(i.translation)
 				add_child(i)
 				hud.anim.play("fade")
 		'figure' :
@@ -55,5 +56,5 @@ func spawn(m='worm'):
 			add_child(i)
 
 func end_game():
-	Data.trigger['worm'] = true
+	Data.trigger['worm'] = true#false
 	var _can_do = get_tree().change_scene("res://scene/ui/Credits.tscn")
